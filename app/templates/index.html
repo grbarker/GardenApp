@@ -5,16 +5,9 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.plant.label }}<br>
-            {{ form.plant(cols=32, rows=4) }}<br>
+            {{ form.post.label }}<br>
+            {{ form.post(cols=32, rows=4) }}<br>
             {% for error in form.plant.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.garden.label }}<br>
-            {{ form.garden(cols=32, rows=4) }}<br>
-            {% for error in form.garden.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
