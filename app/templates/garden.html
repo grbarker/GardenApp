@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
     <h1>{{current_user.username}}'s {{garden.name}} Garden</h1>
     <p> {{garden.name}}</p>
     <p> {{garden.id}}</p>
@@ -15,7 +15,7 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-    <h4>What's gorwing in {{current_user.username}}'s {{garden.name}} garden.</h4>
+    <h4>What's growing in {{current_user.username}}'s {{garden.name}} garden.</h4>
     {% for plant in plants %}
     <p>
     {{ plant.name }}

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
     <h1>Hi, {{ current_user.username }}!</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
             {{ form.post.label }}<br>
             {{ form.post(cols=32, rows=4) }}<br>
-            {% for error in form.plant.errors %}
+            {% for error in form.post.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
@@ -18,28 +18,42 @@
         <p>
             {{ form2.plant.label }}<br>
             {{ form2.plant(cols=32, rows=4) }}<br>
-            {% for error in form.plant.errors %}
+            {% for error in form2.plant.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form2.garden.label }}<br>
             {{ form2.garden(cols=32, rows=4) }}<br>
-            {% for error in form.garden.errors %}
+            {% for error in form2.garden.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form2.submit() }}</p>
     </form>
     <p>New garden? <a href="{{ url_for('registerGarden') }}">Click to Register a New Garden!</a></p>
     <h3>To add a plant select the garden you planted it in</h3>
     {% for garden in gardens %}
     <a href="{{url_for('garden', garden_name=garden.name, garden_id = garden.id)}}">
-        {{ garden.name }}
+        {{ garden.name }},
     </a>
     {% endfor %}
-    {% for plant in plants %}
-        {% include '_plant.html' %}
-    {% endfor %}
+    <hr>
+    <div>
+        <span>
+            <div>
+            {% for post in posts %}
+                {% include '_post.html' %}
+            {% endfor %}
+            </div>
+        </span>
+        <span>
+            <div>
+            {% for plant in plants %}
+                {% include '_plant.html' %}
+            {% endfor %}
+            </div>
+        </span>
+    </div>
 {% endblock %}
 
