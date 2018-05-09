@@ -47,10 +47,8 @@ class EditProfileForm(FlaskForm):
                 raise ValidationError('Please use a different username. Username taken.')
 
 
-class PlantForm(FlaskForm):
-    plant = StringField('What did you plant', validators=[
-        DataRequired(), Length(min=1, max=140)])
-    garden = StringField('What garden did you plant it in?', validators=[
+class PostForm(FlaskForm):
+    post = StringField('Say something', validators=[
         DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Submit')
 

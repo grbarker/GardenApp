@@ -2,29 +2,30 @@ from flask import render_template, flash, redirect, url_for, request, jsonify
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app.models import User, Plant, Garden
+from app.models import User, Plant, Garden, Post
 from app import app
 from app import db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, PlantForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    form = PlantForm()
+    form = PostForm()
     print(current_user.id)
     if form.validate_on_submit():
-        plant = Plant(name=form.plant.data, grower=current_user)
-        db.session.add(plant)
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
         db.session.commit()
-        flash('Your plant is now live!')
+        flash('Your post is now live!')
         return redirect(url_for('index'))
     form2 = PlantFormDropDown()
     form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
+    posts = current_user.followed_posts().all()
     plants = current_user.followed_plants().all()
     gardens = current_user.usergardens()
     return render_template("index.html", title='Home Page', form=form, form2=form2,
-                           plants=plants, gardens=gardens)
+                           posts=posts, plants=plants, gardens=gardens)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
