@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{current_user.username}}'s {{garden.name}} Garden</h1>
+    <p> {{garden.name}}</p>
+    <p> {{garden.id}}</p>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.plant.label }}<br>
+            {{ form.plant(cols=32, rows=4) }}<br>
+            {% for error in form.plant.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <h4>What's gorwing in {{current_user.username}}'s {{garden.name}} garden.</h4>
+    {% for plant in plants %}
+    <p>
+    {{ plant.name }}
+    </p>
+    {% endfor %}
+{% endblock %}
+
+
+
+

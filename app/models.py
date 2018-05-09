@@ -11,6 +11,10 @@ followers = db.Table('followers',
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
 )
 
+users_gardens = db.Table('users_gardens',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('garden_id', db.Integer, db.ForeignKey('garden.id'))
+)
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,6 +24,7 @@ class User(UserMixin, db.Model):
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     password_hash = db.Column(db.String(128))
     plants = db.relationship('Plant', backref='grower', lazy='dynamic')
+    gardens = db.relationship('Garden', secondary=users_gardens, backref=db.backref('users', lazy='dynamic'))
     followed = db.relationship(
         'User', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),
@@ -53,6 +58,11 @@ class User(UserMixin, db.Model):
         return self.followed.filter(
             followers.c.followed_id == user.id).count() > 0
 
+    def usergardens(self):
+        gardens = self.gardens
+        return gardens
+
+
     def followed_plants(self):
         followed = Plant.query.join(
             followers, (followers.c.followed_id == Plant.user_id)).filter(
@@ -61,16 +71,26 @@ class User(UserMixin, db.Model):
         return followed.union(own).order_by(Plant.timestamp.desc())
 
 
+class Garden(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(140), index=True)
+    created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    plants = db.relationship('Plant', backref='garden', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Garden {}>'.format(self.name)
+
 
 
 class Plant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
+    name = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    garden_id = db.Column(db.Integer, db.ForeignKey('garden.id'))
 
     def __repr__(self):
-        return '<Plant {}>'.format(self.body)
+        return '<Plant {}>'.format(self.name)
 
 
 @login.user_loader

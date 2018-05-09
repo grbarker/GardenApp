@@ -1,6 +1,17 @@
-<table>
+<table class="table table-hover">
     <tr valign="top">
-        <td><img src="{{ plant.grower.avatar(36) }}"></td>
-        <td>{{ plant.grower.username }} says:<br>{{ plant.body }}</td>
+        <td width="70px">
+            <a href="{{ url_for('user', username=plant.grower.username) }}">
+                <img src="{{ plant.grower.avatar(70) }}">
+            </a>
+        </td>
+        <td>
+            <a href="{{ url_for('user', username=plant.grower.username) }}">
+                {{ plant.grower.username }}
+            </a>
+            says:
+            <br>
+            {{ plant.name }}
+        </td>
     </tr>
 </table>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.plant.label }}<br>
+            {{ form.plant(cols=32, rows=4) }}<br>
+            {% for error in form.plant.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.garden.label }}<br>
+            {{ form.garden(size=32) }}<br>
+            {% for error in form.garden.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.user.label }}<br>
+            {{ form.user(size=64) }}<br>
+            {% for error in form.user.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
+    {% for plant in plants %}
+        {% include '_plant.html' %}
+    {% endfor %}
+{% endblock %}

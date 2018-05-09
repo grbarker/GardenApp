@@ -1,13 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if current_user.is_anonymous %}
-        <h1>Hello! Please sign in.</h1>
-    {% else %}
-        <h1>Hi, {{ current_user.username }}!</h1>
-        {% for post in posts %}
-        <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-        {% endfor %}
-    {% endif %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.plant.label }}<br>
+            {{ form.plant(cols=32, rows=4) }}<br>
+            {% for error in form.plant.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.garden.label }}<br>
+            {{ form.garden(cols=32, rows=4) }}<br>
+            {% for error in form.garden.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <form action="" method="post">
+        {{ form2.hidden_tag() }}
+        <p>
+            {{ form2.plant.label }}<br>
+            {{ form2.plant(cols=32, rows=4) }}<br>
+            {% for error in form.plant.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form2.garden.label }}<br>
+            {{ form2.garden(cols=32, rows=4) }}<br>
+            {% for error in form.garden.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <p>New garden? <a href="{{ url_for('registerGarden') }}">Click to Register a New Garden!</a></p>
+    <h3>To add a plant select the garden you planted it in</h3>
+    {% for garden in gardens %}
+    <a href="{{url_for('garden', garden_name=garden.name, garden_id = garden.id)}}">
+        {{ garden.name }}
+    </a>
+    {% endfor %}
+    {% for plant in plants %}
+        {% include '_plant.html' %}
+    {% endfor %}
 {% endblock %}
 

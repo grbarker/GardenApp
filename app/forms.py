@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
-from app.models import User
+from app.models import User, Plant, Garden
+from flask_login import current_user
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -46,7 +47,39 @@ class EditProfileForm(FlaskForm):
                 raise ValidationError('Please use a different username. Username taken.')
 
 
-class PostForm(FlaskForm):
-    post = TextAreaField('Say something', validators=[
+class PlantForm(FlaskForm):
+    plant = StringField('What did you plant', validators=[
+        DataRequired(), Length(min=1, max=140)])
+    garden = StringField('What garden did you plant it in?', validators=[
         DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Submit')
+
+    def validate_garden(self, garden):
+        garden = Garden.query.filter_by(name=garden)
+        if garden is None:
+            raise ValidationError('Garden does not exist. Please enter a garden name that is in the system or create a new one.')
+
+
+class PlantFormDropDown(FlaskForm):
+    plant = StringField('What did you plant', validators=[
+        DataRequired(), Length(min=1, max=140)])
+    garden = SelectField('Gardens', coerce=int)
+    submit = SubmitField('Submit')
+
+
+class PlantFormFromGardenPage(FlaskForm):
+    plant = StringField('What did you plant', validators=[
+        DataRequired(), Length(min=1, max=140)])
+    submit = SubmitField('Submit')
+
+
+
+class GardenForm(FlaskForm):
+    name = StringField("What's the name of this new garden?", validators=[DataRequired(), Length(min=1, max=140)])
+    submit = SubmitField('Submit')
+
+    def validate_name(self, name):
+        gardens = current_user.gardens
+        for garden in gardens:
+            if name.data == garden.name:
+                raise ValidationError('You already have a garden by this name.')
