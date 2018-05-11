@@ -61,12 +61,20 @@
                     {% for post in posts %}
                         {% include '_post.html' %}
                     {% endfor %}
-                    {% if posts_prev_url %}
-                    <a href="{{ posts_prev_url }}">Newer posts</a>
-                    {% endif %}
-                    {% if posts_next_url %}
-                    <a href="{{ posts_next_url }}">Older posts</a>
-                    {% endif %}
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li class="previous{% if not posts_prev_url %} disabled{% endif %}">
+                                <a href="{{ posts_prev_url or '#' }}">
+                                    <span aria-hidden="true">&larr;</span> Newer posts
+                                </a>
+                            </li>
+                            <li class="next{% if not posts_next_url %} disabled{% endif %}">
+                                <a href="{{ posts_next_url or '#' }}">
+                                    Older posts <span aria-hidden="true">&rarr;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
         </div>
         <div class="col-md-6">
@@ -77,12 +85,20 @@
                 {% for plant in plants %}
                     {% include '_plant.html' %}
                 {% endfor %}
-                    {% if plants_prev_url %}
-                    <a href="{{ plants_prev_url }}">Newer plants</a>
-                    {% endif %}
-                    {% if plants_next_url %}
-                    <a href="{{ plants_next_url }}">Older plants</a>
-                    {% endif %}
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li class="previous{% if not plants_prev_url %} disabled{% endif %}">
+                                <a href="{{ plants_prev_url or '#' }}">
+                                    <span aria-hidden="true">&larr;</span> Newer plants
+                                </a>
+                            </li>
+                            <li class="next{% if not plants_next_url %} disabled{% endif %}">
+                                <a href="{{ plants_next_url or '#' }}">
+                                    Older plants <span aria-hidden="true">&rarr;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
         </div>
     </div>
