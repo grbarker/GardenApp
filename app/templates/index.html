@@ -14,12 +14,12 @@
         {{ form1.hidden_tag() }}
         <p>
             {{ form1.post.label }}<br>
-            {{ form1.post(cols=32, rows=4) }}<br>
+            {{ form1.post(class="form-control") }}<br>
             {% for error in form1.post.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form1.submit() }}</p>
+        <p>{{ form1.submit(class="btn btn-default") }}</p>
     </form>
     {% endif %}
     {% if form2 %}
@@ -27,19 +27,19 @@
         {{ form2.hidden_tag() }}
         <p>
             {{ form2.plant.label }}<br>
-            {{ form2.plant(cols=32, rows=4) }}<br>
+            {{ form2.plant(class="form-control") }}<br>
             {% for error in form2.plant.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form2.garden.label }}<br>
-            {{ form2.garden(cols=32, rows=4) }}<br>
+            {{ form2.garden(class="form-control") }}<br>
             {% for error in form2.garden.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form2.submit() }}</p>
+        <p>{{ form2.submit(class="btn btn-default") }}</p>
     </form>
     {% endif %}
     {% if title == 'Home Page' %}

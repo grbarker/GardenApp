@@ -6,11 +6,11 @@
         {{ form.hidden_tag() }}
         <p>
             {{ form.name.label }}<br>
-            {{ form.name(cols=32, rows=4) }}<br>
+            {{ form.name(class="form-control") }}<br>
             {% for error in form.name.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class="btn btn-default") }}</p>
     </form>
 {% endblock %}
