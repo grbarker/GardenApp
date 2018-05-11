@@ -15,10 +15,48 @@ def index():
     form1 = PostForm()
     form2 = PlantFormDropDown()
     form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
-    posts = current_user.followed_posts().all()
-    plants = current_user.followed_plants().all()
+    posts_page = request.args.get('posts_page', 1, type=int)
+    plants_page = request.args.get('plants_page', 1, type=int)
+    posts = current_user.followed_posts().paginate(
+        posts_page, app.config['POSTS_PER_PAGE'], False)
+    plants = current_user.followed_plants().paginate(
+        plants_page, app.config['PLANTS_PER_PAGE'], False)
+    plants_next_url = url_for('index', plants_page=plants.next_num, posts_page=posts_page) \
+        if plants.has_next else None
+    plants_prev_url = url_for('index', plants_page=plants.prev_num, posts_page=posts_page) \
+        if plants.has_prev else None
+    posts_next_url = url_for('index', plants_page=plants_page, posts_page=posts.next_num) \
+        if posts.has_next else None
+    posts_prev_url = url_for('index', plants_page=plants_page, posts_page=posts.prev_num) \
+        if posts.has_prev else None
     gardens = current_user.usergardens()
-    return render_template("index.html", title='Home Page', form1=form1, form2=form2, posts=posts, plants=plants, gardens=gardens)
+    return render_template("index.html", title='Home Page', form1=form1, form2=form2, posts=posts.items,
+        posts_next_url=posts_next_url, posts_prev_url=posts_prev_url, plants=plants.items,
+        plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, gardens=gardens)
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    posts_page = request.args.get('posts_page', 1, type=int)
+    plants_page = request.args.get('plants_page', 1, type=int)
+    plants = Plant.query.order_by(Plant.timestamp.desc()).paginate(
+        plants_page, app.config['PLANTS_PER_PAGE'], False)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        posts_page, app.config['POSTS_PER_PAGE'], False)
+    plants_next_url = url_for('explore', plants_page=plants.next_num, posts_page=posts_page) \
+        if plants.has_next else None
+    plants_prev_url = url_for('explore', plants_page=plants.prev_num, posts_page=posts_page) \
+        if plants.has_prev else None
+    posts_next_url = url_for('explore', plants_page=plants_page, posts_page=posts.next_num) \
+        if posts.has_next else None
+    posts_prev_url = url_for('explore', plants_page=plants_page, posts_page=posts.prev_num) \
+        if posts.has_prev else None
+    gardens = current_user.usergardens()
+    return render_template("index.html", title='Explore', plants=plants.items, plants_next_url=plants_next_url,
+        plants_prev_url=plants_prev_url, posts=posts.items, posts_next_url=posts_next_url,
+        posts_prev_url=posts_prev_url, gardens=gardens)
+
 
 @app.route('/post_from_index', methods=['POST'])
 def post():
@@ -144,29 +182,6 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
-
-
-@app.route('/explore')
-@login_required
-def explore():
-    posts_page = request.args.get('posts_page', 1, type=int)
-    plants_page = request.args.get('plants_page', 1, type=int)
-    plants = Plant.query.order_by(Plant.timestamp.desc()).paginate(
-        plants_page, app.config['PLANTS_PER_PAGE'], False)
-    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        posts_page, app.config['POSTS_PER_PAGE'], False)
-    plants_next_url = url_for('explore', plants_page=plants.next_num, posts_page=posts_page) \
-        if plants.has_next else None
-    plants_prev_url = url_for('explore', plants_page=plants.prev_num, posts_page=posts_page) \
-        if plants.has_prev else None
-    posts_next_url = url_for('explore', plants_page=plants_page, posts_page=posts.next_num) \
-        if posts.has_next else None
-    posts_prev_url = url_for('explore', plants_page=plants_page, posts_page=posts.prev_num) \
-        if posts.has_prev else None
-    gardens = current_user.usergardens()
-    return render_template("index.html", title='Explore', plants=plants.items, plants_next_url=plants_next_url,
-        plants_prev_url=plants_prev_url, posts=posts.items, posts_next_url=posts_next_url,
-        posts_prev_url=posts_prev_url, gardens=gardens)
 
 
 @app.route('/follow/<username>')
