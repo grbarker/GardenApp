@@ -6,19 +6,24 @@
 {% endblock %}
 
 {% block app_content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
+    {% if title == 'Home Page' %}<h1>Hi, {{ current_user.username }}!</h1>
+    {% elif title == 'Explore' %}<h1>Let's take a look at what's going on in the neighborhood</h1>
+    {% endif %}
+    {% if form1 %}
+    <form action="{{ url_for('post') }}" method="post">
+        {{ form1.hidden_tag() }}
         <p>
-            {{ form.post.label }}<br>
-            {{ form.post(cols=32, rows=4) }}<br>
-            {% for error in form.post.errors %}
+            {{ form1.post.label }}<br>
+            {{ form1.post(cols=32, rows=4) }}<br>
+            {% for error in form1.post.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form1.submit() }}</p>
     </form>
-    <form action="" method="post">
+    {% endif %}
+    {% if form2 %}
+    <form action="{{ url_for('plant') }}" method="post">
         {{ form2.hidden_tag() }}
         <p>
             {{ form2.plant.label }}<br>
@@ -36,17 +41,22 @@
         </p>
         <p>{{ form2.submit() }}</p>
     </form>
+    {% endif %}
+    {% if title == 'Home Page' %}
     <p>New garden? <a href="{{ url_for('registerGarden') }}">Click to Register a New Garden!</a></p>
-    <h3>To add a plant select the garden you planted it in</h3>
+    <h3>You can also add a plant by selecting the garden you planted it in</h3>
     {% for garden in gardens %}
     <a href="{{url_for('garden', garden_name=garden.name, garden_id = garden.id)}}">
         {{ garden.name }},
     </a>
     {% endfor %}
+    {% endif %}
     <hr>
     <div>
         <div class="col-md-6">
-            <h4>Your Posts</h4>
+            {% if title == 'Home Page' %}<h4>Your Posts</h4>
+            {% elif title == 'Explore' %}<h4>Recent Posts</h4>
+            {% endif %}
                 <div>
                     {% for post in posts %}
                         {% include '_post.html' %}
@@ -54,7 +64,9 @@
                 </div>
         </div>
         <div class="col-md-6">
-            <h4>Your Plants</h4>
+            {% if title == 'Home Page' %}<h4>Your Plants</h4>
+            {% elif title == 'Explore' %}<h4>Recent Plants</h4>
+            {% endif %}
                 <div>
                 {% for plant in plants %}
                     {% include '_plant.html' %}

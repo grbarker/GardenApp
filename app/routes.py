@@ -6,26 +6,50 @@ from app.models import User, Plant, Garden, Post
 from app import app
 from app import db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage
+import sys
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    form = PostForm()
-    print(current_user.id)
-    if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post is now live!')
-        return redirect(url_for('index'))
+    form1 = PostForm()
     form2 = PlantFormDropDown()
     form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
     posts = current_user.followed_posts().all()
     plants = current_user.followed_plants().all()
     gardens = current_user.usergardens()
-    return render_template("index.html", title='Home Page', form=form, form2=form2,
-                           posts=posts, plants=plants, gardens=gardens)
+    return render_template("index.html", title='Home Page', form1=form1, form2=form2, posts=posts, plants=plants, gardens=gardens)
+
+@app.route('/post_from_index', methods=['POST'])
+def post():
+    form1 = PostForm()
+    form2 = PlantFormDropDown()
+    form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
+    if form1.validate_on_submit():
+        post = Post(body=form1.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))
+
+
+@app.route('/plant_from_index', methods=['POST'])
+def plant():
+    form1 = PostForm()
+    form2 = PlantFormDropDown()
+    form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
+    if form2.submit.data:
+        id = form2.garden.data
+        garden = Garden.query.filter_by(id=id).first()
+    if form2.validate_on_submit():
+        plant = Plant(name=form2.plant.data,
+            grower=current_user,
+            garden=garden)
+        db.session.add(plant)
+        db.session.commit()
+        flash('Your plant is now live!')
+        return redirect(url_for('index'))
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -124,6 +148,16 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    page = request.args.get('page', 1, type=int)
+    plants = Plant.query.order_by(Plant.timestamp.desc()).all()
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    gardens = current_user.usergardens()
+    return render_template("index.html", title='Explore', plants=plants, posts=posts, gardens=gardens)
 
 
 @app.route('/follow/<username>')
