@@ -61,11 +61,11 @@
                     {% for post in posts %}
                         {% include '_post.html' %}
                     {% endfor %}
-                    {% if prev_url %}
-                    <a href="{{ prev_url }}">Newer posts</a>
+                    {% if posts_prev_url %}
+                    <a href="{{ posts_prev_url }}">Newer posts</a>
                     {% endif %}
-                    {% if next_url %}
-                    <a href="{{ next_url }}">Older posts</a>
+                    {% if posts_next_url %}
+                    <a href="{{ posts_next_url }}">Older posts</a>
                     {% endif %}
                 </div>
         </div>
@@ -77,6 +77,12 @@
                 {% for plant in plants %}
                     {% include '_plant.html' %}
                 {% endfor %}
+                    {% if plants_prev_url %}
+                    <a href="{{ plants_prev_url }}">Newer plants</a>
+                    {% endif %}
+                    {% if plants_next_url %}
+                    <a href="{{ plants_next_url }}">Older plants</a>
+                    {% endif %}
                 </div>
         </div>
     </div>

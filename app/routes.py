@@ -69,8 +69,6 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
-
-
 @app.route('/logout')
 def logout():
     logout_user()
@@ -92,7 +90,6 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-
 @app.route('/registerGarden', methods=['GET', 'POST'])
 @login_required
 def registerGarden():
@@ -107,7 +104,6 @@ def registerGarden():
         flash('Congratulations, you have registered a new garden!')
         return redirect(url_for('index'))
     return render_template('registerGarden.html', title='Register Garden', form=form)
-
 
 
 @app.route('/user/<username>')
@@ -153,17 +149,24 @@ def edit_profile():
 @app.route('/explore')
 @login_required
 def explore():
-    page = request.args.get('page', 1, type=int)
-    plants = Plant.query.order_by(Plant.timestamp.desc()).all()
+    posts_page = request.args.get('posts_page', 1, type=int)
+    plants_page = request.args.get('plants_page', 1, type=int)
+    plants = Plant.query.order_by(Plant.timestamp.desc()).paginate(
+        plants_page, app.config['PLANTS_PER_PAGE'], False)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('explore', page=posts.next_num) \
+        posts_page, app.config['POSTS_PER_PAGE'], False)
+    plants_next_url = url_for('explore', plants_page=plants.next_num, posts_page=posts_page) \
+        if plants.has_next else None
+    plants_prev_url = url_for('explore', plants_page=plants.prev_num, posts_page=posts_page) \
+        if plants.has_prev else None
+    posts_next_url = url_for('explore', plants_page=plants_page, posts_page=posts.next_num) \
         if posts.has_next else None
-    prev_url = url_for('explore', page=posts.prev_num) \
+    posts_prev_url = url_for('explore', plants_page=plants_page, posts_page=posts.prev_num) \
         if posts.has_prev else None
     gardens = current_user.usergardens()
-    return render_template("index.html", title='Explore', plants=plants, posts=posts.items,
-                          next_url=next_url, prev_url=prev_url, gardens=gardens)
+    return render_template("index.html", title='Explore', plants=plants.items, plants_next_url=plants_next_url,
+        plants_prev_url=plants_prev_url, posts=posts.items, posts_next_url=posts_next_url,
+        posts_prev_url=posts_prev_url, gardens=gardens)
 
 
 @app.route('/follow/<username>')
