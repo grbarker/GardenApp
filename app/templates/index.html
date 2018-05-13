@@ -45,11 +45,17 @@
     {% if title == 'Home Page' %}
     <p>New garden? <a href="{{ url_for('registerGarden') }}">Click to Register a New Garden!</a></p>
     <h3>You can also add a plant by selecting the garden you planted it in</h3>
+    <table>
+        <tr valign="top">
+            <td>{{ current_user.username }}'s Gardens:&ensp;</td>
     {% for garden in gardens %}
-    <a href="{{url_for('garden', garden_name=garden.name, garden_id = garden.id)}}">
-        {{ garden.name }},
-    </a>
+            <td><a href="{{url_for('garden', garden_name=garden.name, garden_id = garden.id)}}">
+                    &ensp;{{ garden.name }}&ensp;|
+                </a>
+            </td>
     {% endfor %}
+        </tr>
+    </table>
     {% endif %}
     <hr>
     <div>
