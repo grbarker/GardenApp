@@ -1,6 +1,8 @@
 <table>
     <tr valign="top">
-        <td><img src="{{ garden.user.avatar(36) }}"></td>
-        <td>{{ garden.user.username }} says:<br>{{ garden.name }}</td>
+        <td><a href="{{url_for('garden', garden_name=garden.name, garden_id = garden.id)}}">
+                {{ garden.name }},
+            </a>
+        </td>
     </tr>
 </table>
