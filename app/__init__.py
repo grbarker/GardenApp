@@ -20,8 +20,10 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.init_app(app)
 login.login_view = 'login'
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
 
-from app import routes, models, errors
+from app import routes, models
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
