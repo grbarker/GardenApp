@@ -2,7 +2,7 @@
 
 {% block styles %}
 {{super()}}
-  <link rel="stylesheet" href="{{url_for('.static', filename='mystyles.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='mystyles.css')}}">
 {% endblock %}
 
 {% block app_content %}
@@ -10,7 +10,7 @@
     {% elif title == 'Explore' %}<h1>Let's take a look at what's going on in the neighborhood</h1>
     {% endif %}
     {% if form1 %}
-    <form action="{{ url_for('post') }}" method="post">
+    <form action="{{ url_for('main.post') }}" method="post">
         {{ form1.hidden_tag() }}
         <p>
             {{ form1.post.label }}<br>
@@ -23,7 +23,7 @@
     </form>
     {% endif %}
     {% if form2 %}
-    <form action="{{ url_for('plant') }}" method="post">
+    <form action="{{ url_for('main.plant') }}" method="post">
         {{ form2.hidden_tag() }}
         <p>
             {{ form2.plant.label }}<br>
@@ -43,13 +43,13 @@
     </form>
     {% endif %}
     {% if title == 'Home Page' %}
-    <p>New garden? <a href="{{ url_for('registerGarden') }}">Click to Register a New Garden!</a></p>
+    <p>New garden? <a href="{{ url_for('main.registerGarden') }}">Click to Register a New Garden!</a></p>
     <h3>You can also add a plant by selecting the garden you planted it in</h3>
     <table>
         <tr valign="top">
             <td>{{ current_user.username }}'s Gardens:&ensp;</td>
     {% for garden in gardens %}
-            <td><a href="{{url_for('garden', garden_name=garden.name, garden_id = garden.id)}}">
+            <td><a href="{{url_for('main.garden', garden_name=garden.name, garden_id = garden.id)}}">
                     &ensp;{{ garden.name }}&ensp;|
                 </a>
             </td>
