@@ -8,12 +8,12 @@
         {{ form.hidden_tag() }}
         <p>
             {{ form.plant.label }}<br>
-            {{ form.plant(cols=32, rows=4) }}<br>
+            {{ form.plant(class="form-control") }}<br>
             {% for error in form.plant.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class="btn btn-default") }}</p>
     </form>
     <h4>What's growing in {{current_user.username}}'s {{garden.name}} garden.</h4>
     {% for plant in plants %}

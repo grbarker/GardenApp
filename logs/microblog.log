@@ -92,3 +92,4 @@ Traceback (most recent call last):
     raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: auth/registerGarden.html
 2018-05-16 14:15:24,851 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 14:22:06,228 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
