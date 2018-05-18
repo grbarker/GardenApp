@@ -110,6 +110,9 @@ class Post(db.Model):
 class Garden(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140), index=True)
+    address = db.Column(db.String(200), index=True)
+    lat = db.Column(db.Integer, index=True)
+    lon = db.Column(db.Integer, index=True)
     created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     plants = db.relationship('Plant', backref='garden', lazy='dynamic')
 

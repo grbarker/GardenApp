@@ -7,6 +7,7 @@ from app import db
 from app.main import bp
 from app.main.forms import EditProfileForm, PostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage
 import sys
+import requests
 
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
@@ -95,7 +96,11 @@ def plant():
 def registerGarden():
     form = GardenForm()
     if form.validate_on_submit():
-        garden = Garden(name=form.name.data)
+        response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(form.address.data))
+        responseJSON = response.json()
+        lat = responseJSON['results'][0]['geometry']['location']['lat']
+        lon = responseJSON['results'][0]['geometry']['location']['lng']
+        garden = Garden(name=form.name.data, address=form.address.data, lat=lat, lon=lon)
         print(garden)
         garden.users.append(current_user)
         print(garden.users)

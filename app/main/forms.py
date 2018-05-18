@@ -51,6 +51,7 @@ class PlantFormFromGardenPage(FlaskForm):
 
 class GardenForm(FlaskForm):
     name = StringField("What's the name of this new garden?", validators=[DataRequired(), Length(min=1, max=140)])
+    address = StringField("Please provide an address for this garden.")
     submit = SubmitField('Submit')
 
     def validate_name(self, name):
