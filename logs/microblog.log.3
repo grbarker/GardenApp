@@ -1,0 +1,145 @@
+2018-05-18 11:47:20,576 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 14:11:12,596 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 14:11:19,227 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 45, in index
+    markers=[markers]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 54, in __init__
+    self.build_markers(markers)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 96, in build_markers
+    marker_dict = self.build_marker_dict(marker)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 102, in build_marker_dict
+    'lng': marker[1],
+IndexError: list index out of range
+2018-05-18 14:12:12,323 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 14:14:07,190 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 14:14:16,392 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 50, in index
+    plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, mymap=mymap, gardens=gardens)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 26, in block "body"
+    {% block scripts %}
+  File "C:\GardenApp\app\templates\base.html", line 55, in block "scripts"
+    <script href="{{url_for('static/js', filename='map.js')}}"></script>
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 323, in url_for
+    force_external=external)
+  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'static/js' with values ['filename']. Did you mean 'static' instead?
+2018-05-18 14:14:48,018 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 14:14:56,193 ERROR: Exception on /explore [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 73, in explore
+    posts_prev_url=posts_prev_url, gardens=gardens)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 26, in block "body"
+    {% block scripts %}
+  File "C:\GardenApp\app\templates\base.html", line 55, in block "scripts"
+    <script href="{{url_for('js', filename='map.js')}}"></script>
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 323, in url_for
+    force_external=external)
+  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'js' with values ['filename']. Did you mean 'static' instead?
+2018-05-18 14:15:11,685 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 14:17:05,853 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 14:18:20,430 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 15:07:35,511 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 15:08:33,406 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]

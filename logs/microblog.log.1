@@ -1,4 +1,30 @@
-2018-05-16 14:12:24,399 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2018-05-18 15:10:13,601 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 15:11:28,379 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 15:17:19,074 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 15:45:00,675 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 17:34:54,024 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 17:40:06,617 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 17:40:14,252 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 17:40:54,110 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 17:44:18,133 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-18 17:44:35,261 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:40:05,782 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:40:42,859 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:41:26,756 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:42:36,765 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:42:54,639 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:45:44,123 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:48:14,395 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:49:18,628 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:50:07,972 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 15:57:05,150 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 17:49:36,691 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 17:50:19,509 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 17:51:04,578 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 17:56:33,169 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 17:57:27,160 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 17:58:47,177 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 17:58:49,746 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,51 +40,20 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 35, in index
-    plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, gardens=gardens)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
-    context, ctx.app)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
-    rv = template.render(context)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\GardenApp\app\templates\index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
-    {%- block html %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
-    {% block body -%}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
-    {% block content -%}
-  File "C:\GardenApp\app\templates\base.html", line 48, in block "content"
-    {% block app_content %}{% endblock %}
-  File "C:\GardenApp\app\templates\index.html", line 68, in block "app_content"
-    {% include '_post.html' %}
-  File "C:\GardenApp\app\templates\_post.html", line 4, in top-level template code
-    <a href="{{ url_for('user', username=post.author.username) }}">
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 333, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1805, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 323, in url_for
-    force_external=external)
-  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'main.user' instead?
-2018-05-16 14:14:22,787 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-16 14:14:32,294 ERROR: Exception on /registerGarden [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\main\routes.py", line 49, in index
+    markers= markers,
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 54, in __init__
+    self.build_markers(markers)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 94, in build_markers
+    self.add_marker(**marker)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 117, in add_marker
+    raise AttributeError('lat and lng required')
+AttributeError: lat and lng required
+2018-05-21 17:59:52,745 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 18:00:19,750 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 18:05:27,565 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:01:13,353 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:01:16,318 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -74,31 +69,32 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 106, in registerGarden
-    return render_template('auth/registerGarden.html', title='Register Garden', form=form)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 133, in render_template
-    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\loaders.py", line 113, in load
-    source, filename, uptodate = self.get_source(environment, name)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 57, in get_source
-    return self._get_source_fast(environment, template)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 85, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: auth/registerGarden.html
-2018-05-16 14:15:24,851 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 14:22:06,228 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 14:42:07,379 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 14:51:12,163 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 15:24:42,814 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 15:24:48,682 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 15:25:13,163 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 15:27:42,132 ERROR: Exception on /registerGarden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\main\routes.py", line 59, in index
+    posts_next_url=posts_next_url, posts_prev_url=posts_prev_url, plants=plants.items,
+AttributeError: 'list' object has no attribute 'items'
+2018-05-21 19:02:16,470 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:02:47,625 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:03:26,954 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:04:42,342 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:13:38,023 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:15:52,452 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:17:10,008 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:18:22,949 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:18:54,726 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:21:25,949 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:24:38,391 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:27:29,103 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:29:37,808 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:31:01,066 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:32:02,029 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:34:44,613 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:36:44,039 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:37:25,434 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:40:01,829 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:41:30,290 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-21 19:47:30,784 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-29 15:39:16,499 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-29 15:39:32,013 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -114,11 +110,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 98, in registerGarden
-    reponse =requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(address))
-NameError: name 'requests' is not defined
-2018-05-17 15:29:40,298 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 15:29:55,636 ERROR: Exception on /registerGarden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\main\routes.py", line 49, in index
+    location_for_markers[index][2].extend(garden_plants)
+TypeError: 'float' object is not subscriptable
+2018-05-29 15:44:21,993 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-05-29 15:44:26,060 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -134,8 +130,7 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 99, in registerGarden
-    reponse = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(address))
-NameError: name 'address' is not defined
-2018-05-17 15:30:24,879 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-17 15:31:10,112 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+  File "C:\GardenApp\app\main\routes.py", line 74, in index
+    posts_next_url=posts_next_url, posts_prev_url=posts_prev_url, plants=plants.items,
+AttributeError: 'list' object has no attribute 'items'
+2018-05-29 15:46:00,541 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]

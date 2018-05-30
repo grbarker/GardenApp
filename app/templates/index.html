@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block app_content %}
+    {% if mymap %}
+    <head>{{mymap.js}}</head>
+    {% endif %}
     {% if title == 'Home Page' %}<h1>Hi, {{ current_user.username }}!</h1>
     {% elif title == 'Explore' %}<h1>Let's take a look at what's going on in the neighborhood</h1>
     {% endif %}
@@ -49,64 +52,74 @@
         <tr valign="top">
             <td>{{ current_user.username }}'s Gardens:&ensp;</td>
     {% for garden in gardens %}
-            <td><a href="{{url_for('main.garden', garden_name=garden.name, garden_id = garden.id)}}">
-                    &ensp;{{ garden.name }}&ensp;|
-                </a>
-            </td>
+        <td><a href="{{url_for('main.garden', garden_name=garden.name, garden_id = garden.id)}}">
+            {% if garden == gardens[0] %}
+                |&ensp;{{ garden.name }}&ensp;|
+            {% elif garden != gardens[0] %}
+                &ensp;{{ garden.name }}&ensp;|
+            {% endif %}
+            </a>
+        </td>
     {% endfor %}
         </tr>
     </table>
     {% endif %}
     <hr>
-    <div>
-        <div class="col-md-6">
-            {% if title == 'Home Page' %}<h4>Your Posts</h4>
-            {% elif title == 'Explore' %}<h4>Recent Posts</h4>
-            {% endif %}
+    <section>
+        <div class="row">
+            <div class="col-md-6" style="height: 100%;">
+                {% if title == 'Home Page' %}<h4>Your Posts</h4>
+                {% elif title == 'Explore' %}<h4>Recent Posts</h4>
+                {% endif %}
                 <div>
                     {% for post in posts %}
                         {% include '_post.html' %}
                     {% endfor %}
-                    <nav aria-label="...">
-                        <ul class="pager">
-                            <li class="previous{% if not posts_prev_url %} disabled{% endif %}">
-                                <a href="{{ posts_prev_url or '#' }}">
-                                    <span aria-hidden="true">&larr;</span> Newer posts
-                                </a>
-                            </li>
-                            <li class="next{% if not posts_next_url %} disabled{% endif %}">
-                                <a href="{{ posts_next_url or '#' }}">
-                                    Older posts <span aria-hidden="true">&rarr;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
-        </div>
-        <div class="col-md-6">
-            {% if title == 'Home Page' %}<h4>Your Plants</h4>
-            {% elif title == 'Explore' %}<h4>Recent Plants</h4>
-            {% endif %}
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous{% if not posts_prev_url %} disabled{% endif %}">
+                            <a href="{{ posts_prev_url or '#' }}">
+                                <span aria-hidden="true">&larr;</span> Newer posts
+                            </a>
+                        </li>
+                        <li class="next{% if not posts_next_url %} disabled{% endif %}">
+                            <a href="{{ posts_next_url or '#' }}">
+                                Older posts <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-6">
+                {% if title == 'Home Page' %}<h4>Your Plants</h4>
+                {% elif title == 'Explore' %}<h4>Recent Plants</h4>
+                {% endif %}
                 <div>
                 {% for plant in plants %}
                     {% include '_plant.html' %}
                 {% endfor %}
-                    <nav aria-label="...">
-                        <ul class="pager">
-                            <li class="previous{% if not plants_prev_url %} disabled{% endif %}">
-                                <a href="{{ plants_prev_url or '#' }}">
-                                    <span aria-hidden="true">&larr;</span> Newer plants
-                                </a>
-                            </li>
-                            <li class="next{% if not plants_next_url %} disabled{% endif %}">
-                                <a href="{{ plants_next_url or '#' }}">
-                                    Older plants <span aria-hidden="true">&rarr;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous{% if not plants_prev_url %} disabled{% endif %}">
+                            <a href="{{ plants_prev_url or '#' }}">
+                                <span aria-hidden="true">&larr;</span> Newer plants
+                            </a>
+                        </li>
+                        <li class="next{% if not plants_next_url %} disabled{% endif %}">
+                            <a href="{{ plants_next_url or '#' }}">
+                                Older plants <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </div>
+    </section>
+    </div class="row">
+    {% if mymap %}
+    <div class="col-md-12" style="margin-bottom: 60px;">{{mymap.html}}</div>
+    {% endif %}
 {% endblock %}
 

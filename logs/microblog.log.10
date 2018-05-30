@@ -1,70 +1,4 @@
-2018-05-16 14:03:37,449 ERROR: Exception on /auth/login [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
-Traceback (most recent call last):
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\GardenApp\app\auth\routes.py", line 27, in login
-    return render_template('auth.login.html', title='Sign In', form=form)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 133, in render_template
-    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\loaders.py", line 113, in load
-    source, filename, uptodate = self.get_source(environment, name)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 57, in get_source
-    return self._get_source_fast(environment, template)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 85, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: auth.login.html
-2018-05-16 14:06:25,848 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-16 14:06:38,284 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
-Traceback (most recent call last):
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 35, in index
-    plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, gardens=gardens)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 133, in render_template
-    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\loaders.py", line 113, in load
-    source, filename, uptodate = self.get_source(environment, name)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 57, in get_source
-    return self._get_source_fast(environment, template)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 85, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: main.index.html
-2018-05-16 14:09:49,158 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
-2018-05-16 14:09:52,665 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2018-05-16 14:12:24,399 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -102,12 +36,16 @@ Traceback (most recent call last):
     {% block doc -%}
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
     {%- block html %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 6, in block "html"
-    {%- block head %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 13, in block "head"
-    {%- block styles %}
-  File "C:\GardenApp\app\templates\index.html", line 5, in block "styles"
-    <link rel="stylesheet" href="{{url_for('.static', filename='mystyles.css')}}">
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
+    {% block content -%}
+  File "C:\GardenApp\app\templates\base.html", line 48, in block "content"
+    {% block app_content %}{% endblock %}
+  File "C:\GardenApp\app\templates\index.html", line 68, in block "app_content"
+    {% include '_post.html' %}
+  File "C:\GardenApp\app\templates\_post.html", line 4, in top-level template code
+    <a href="{{ url_for('user', username=post.author.username) }}">
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 333, in url_for
     return appctx.app.handle_url_build_error(error, endpoint, values)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1805, in handle_url_build_error
@@ -118,5 +56,86 @@ Traceback (most recent call last):
     force_external=external)
   File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\routing.py", line 1776, in build
     raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'main.static' with values ['filename']. Did you mean 'static' instead?
-2018-05-16 14:12:21,604 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'main.user' instead?
+2018-05-16 14:14:22,787 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-16 14:14:32,294 ERROR: Exception on /registerGarden [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 106, in registerGarden
+    return render_template('auth/registerGarden.html', title='Register Garden', form=form)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: auth/registerGarden.html
+2018-05-16 14:15:24,851 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 14:22:06,228 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 14:42:07,379 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 14:51:12,163 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 15:24:42,814 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 15:24:48,682 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 15:25:13,163 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 15:27:42,132 ERROR: Exception on /registerGarden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 98, in registerGarden
+    reponse =requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(address))
+NameError: name 'requests' is not defined
+2018-05-17 15:29:40,298 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 15:29:55,636 ERROR: Exception on /registerGarden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 99, in registerGarden
+    reponse = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(address))
+NameError: name 'address' is not defined
+2018-05-17 15:30:24,879 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]
+2018-05-17 15:31:10,112 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:70]

@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, current_app
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
+from flask_googlemaps import Map
 from werkzeug.urls import url_parse
 from app.models import User, Plant, Garden, Post
 from app import db
@@ -30,10 +31,47 @@ def index():
         if posts.has_next else None
     posts_prev_url = url_for('main.index', plants_page=plants_page, posts_page=posts.prev_num) \
         if posts.has_prev else None
-    gardens = current_user.usergardens()
+    gardens = current_user.gardens
+    coords = []
+    locations_for_markers = []
+    markers = []
+    for garden in gardens:
+        if garden.lat and garden.lon:
+            lat = garden.lat
+            lon = garden.lon
+            coord = (lat, lon)
+            garden_plants = garden.plants.all()
+            #handle the case where two markers would be placed in hte exact same spot, where only one would be visible and usable in the google maps once rendered
+            if coord in coords:
+                #find the index of the first garden for a given coord
+                index = coords.index(coord)
+                #use index of given coord to select the corresponding location_for_markers in its list and extend the plants list
+                locations_for_markers[index][2].extend(garden_plants)
+            elif coord not in coords:
+                coords.append(coord)
+                location_for_markers = (lat, lon, garden_plants)
+                locations_for_markers.append(location_for_markers)
+    for location_for_markers in locations_for_markers:
+        location_plants = location_for_markers[2]
+        infobox_plants = ''
+        for location_plant in location_plants:
+            infobox_plants = infobox_plants + '<li style="list-style-type: none;">' + location_plant.name + '</li>'
+        lat = location_for_markers[0]
+        lon =location_for_markers[1]
+        icon = str(url_for('static', filename='agriculture_map_icons/iboga.png'))
+        infobox = '<h3 style="strong">{}&#39;s plants at this location</h3><ul>{}</ul>'.format(current_user.username, infobox_plants)
+        marker = {'icon': icon, 'lat': lat, 'lng': lon, 'infobox': infobox}
+        markers.append(marker)
+    mymap = Map(
+        identifier="mymap",
+        lat=45.487292,
+        lng=-122.635435,
+        style="height:400px;width:100%;margin-bottom=:20px;",
+        markers= markers,
+    )
     return render_template("index.html", title='Home Page', form1=form1, form2=form2, posts=posts.items,
         posts_next_url=posts_next_url, posts_prev_url=posts_prev_url, plants=plants.items,
-        plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, gardens=gardens)
+        plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, mymap=mymap, gardens=gardens)
 
 
 @bp.route('/explore')

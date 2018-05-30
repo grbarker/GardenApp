@@ -14,5 +14,6 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'flaskapperrors'
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')or 'wgswtrq9gs'
     ADMINS = ['your-email@example.com']
-    POSTS_PER_PAGE = 10
-    PLANTS_PER_PAGE = 10
+    POSTS_PER_PAGE = 4
+    PLANTS_PER_PAGE = 4
+    GOOGLEMAPS_KEY = 'AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'
