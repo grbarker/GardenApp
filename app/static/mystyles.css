@@ -3,8 +3,17 @@ body {
     background-color: #cccccc;
     background-size: auto;
 }
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
 .container {
     background-color: #fff;
     opacity: 0.9;
 }
 
+.margin-bttm {
+    margin-bottom: 8px;
+}

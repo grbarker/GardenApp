@@ -6,7 +6,7 @@ from werkzeug.urls import url_parse
 from app.models import User, Plant, Garden, Post
 from app import db
 from app.main import bp
-from app.main.forms import EditProfileForm, PostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage
+from app.main.forms import EditProfileForm, PostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage, DeleteGardenForm
 import sys
 import requests
 
@@ -205,9 +205,21 @@ def garden(garden_name, garden_id):
         plant = Plant(name=form.plant.data, grower=current_user, garden=garden)
         db.session.add(plant)
         db.session.commit()
-        flash('Your plant is now live!')
+        flash('Your garden is now live!')
         return redirect(url_for('main.index'))
     return render_template('garden.html', form=form, garden=garden, plants=plants)
+
+@bp.route('/user/<garden_name>, <garden_id>/delete', methods=['GET', 'POST'])
+@login_required
+def delete_garden(garden_name, garden_id):
+    garden = Garden.query.filter_by(id=garden_id).first_or_404()
+    form = DeleteGardenForm()
+    if form.validate_on_submit():
+        db.session.delete(garden)
+        db.session.commit()
+        flash('Your garden has been removed!')
+        return redirect(url_for('main.index'))
+    return render_template('delete_garden.html', form=form, garden=garden)
 
 
 @bp.route('/edit_profile', methods=['GET', 'POST'])

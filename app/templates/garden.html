@@ -4,6 +4,12 @@
     <h1>{{current_user.username}}'s {{garden.name}} Garden</h1>
     <p> {{garden.name}}</p>
     <p> {{garden.id}}</p>
+    <a href = "{{url_for('main.delete_garden', garden_name=garden.name, garden_id = garden.id)}}">
+        <button type="button" class="btn btn-default delete">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true">
+            </span> Delete Garden
+        </button>
+    </a>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>

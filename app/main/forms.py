@@ -51,7 +51,7 @@ class PlantFormFromGardenPage(FlaskForm):
 
 class GardenForm(FlaskForm):
     name = StringField("What's the name of this new garden?", validators=[DataRequired(), Length(min=1, max=140)])
-    address = StringField("Please provide an address for this garden.")
+    address = StringField("Please provide an address for this garden.", validators=[DataRequired(), Length(min=1, max=240)])
     submit = SubmitField('Submit')
 
     def validate_name(self, name):
@@ -59,3 +59,9 @@ class GardenForm(FlaskForm):
         for garden in gardens:
             if name.data == garden.name:
                 raise ValidationError('You already have a garden by this name.')
+
+
+
+class DeleteGardenForm(FlaskForm):
+    submit = SubmitField('Delete')
+
