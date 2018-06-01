@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
-{% block styles %}
-{{super()}}
-  <link rel="stylesheet" href="{{url_for('static', filename='mystyles.css')}}">
-{% endblock %}
+
 
 {% block app_content %}
     {% if mymap %}
@@ -119,7 +116,7 @@
     </section>
     </div class="row">
     {% if mymap %}
-    <div class="col-md-12" style="margin-bottom: 60px;">{{mymap.html}}</div>
+    <div class="col-md-12" style="margin-bottom: 60px;margin-top: 20px;">{{mymap.html}}</div>
     {% endif %}
 {% endblock %}
 

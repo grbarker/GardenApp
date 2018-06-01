@@ -92,9 +92,47 @@ def explore():
     posts_prev_url = url_for('main.explore', plants_page=plants_page, posts_page=posts.prev_num) \
         if posts.has_prev else None
     gardens = current_user.usergardens()
+    all_gardens = Garden.query.all()
+    coords = []
+    locations_for_markers = []
+    markers = []
+    for garden in all_gardens:
+        if garden.lat and garden.lon:
+            lat = garden.lat
+            lon = garden.lon
+            coord = (lat, lon)
+            garden_plants = garden.plants.all()
+            #handle the case where two markers would be placed in hte exact same spot, where only one would be visible and usable in the google maps once rendered
+            if coord in coords:
+                #find the index of the first garden for a given coord
+                index = coords.index(coord)
+                #use index of given coord to select the corresponding location_for_markers in its list and extend the plants list
+                locations_for_markers[index][2].extend(garden_plants)
+            elif coord not in coords:
+                coords.append(coord)
+                location_for_markers = (lat, lon, garden_plants)
+                locations_for_markers.append(location_for_markers)
+    for location_for_markers in locations_for_markers:
+        location_plants = location_for_markers[2]
+        infobox_plants = ''
+        for location_plant in location_plants:
+            infobox_plants = infobox_plants + '<li style="list-style-type: none;">' + '<strong>' + location_plant.name + '</strong>- planted by ' + location_plant.grower.username + '</li>'
+        lat = location_for_markers[0]
+        lon =location_for_markers[1]
+        icon = str(url_for('static', filename='agriculture_map_icons/iboga.png'))
+        infobox = '<h3 style="strong">Plants at this location</h3><ul>{}</ul>'.format(infobox_plants)
+        marker = {'icon': icon, 'lat': lat, 'lng': lon, 'infobox': infobox}
+        markers.append(marker)
+    mymap = Map(
+        identifier="mymap",
+        lat=45.487292,
+        lng=-122.635435,
+        style="height:400px;width:100%;",
+        markers= markers,
+    )
     return render_template("index.html", title='Explore', plants=plants.items, plants_next_url=plants_next_url,
         plants_prev_url=plants_prev_url, posts=posts.items, posts_next_url=posts_next_url,
-        posts_prev_url=posts_prev_url, gardens=gardens)
+        posts_prev_url=posts_prev_url, mymap=mymap, gardens=gardens)
 
 
 @bp.route('/post_from_index', methods=['POST'])

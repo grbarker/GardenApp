@@ -1,7 +1,10 @@
-span.a {
-    display: inline-block;
-    width: 50%;
-    padding: 15px;
-    border: 1px solid blue;
-    background-color: yellow;
+body {
+    background-image: url("./pics/annie-spratt-89769-unsplash-xxxxlarge_2000.jpg");
+    background-color: #cccccc;
+    background-size: auto;
 }
+.container {
+    background-color: #fff;
+    opacity: 0.9;
+}
+
