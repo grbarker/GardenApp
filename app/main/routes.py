@@ -66,7 +66,7 @@ def index():
         identifier="mymap",
         lat=45.487292,
         lng=-122.635435,
-        style="height:400px;width:100%;margin-bottom=:20px;",
+        style="height:500px;width:100%;margin-bottom=:20px;",
         markers= markers,
     )
     return render_template("index.html", title='Home Page', form1=form1, form2=form2, posts=posts.items,
@@ -127,7 +127,7 @@ def explore():
         identifier="mymap",
         lat=45.487292,
         lng=-122.635435,
-        style="height:400px;width:100%;",
+        style="height:500px;width:100%;",
         markers= markers,
     )
     return render_template("index.html", title='Explore', plants=plants.items, plants_next_url=plants_next_url,

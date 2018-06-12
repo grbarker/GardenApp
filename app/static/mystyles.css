@@ -1,19 +1,37 @@
+html {
+    height: 100%;
+}
+
 body {
-    background-image: url("./pics/annie-spratt-89769-unsplash-xxxxlarge_2000.jpg");
-    background-color: #cccccc;
-    background-size: auto;
+    background-color: #008000;
+    height: 100%;
 }
 
-a {
-    text-decoration: none;
-    color: #333;
+hr {
+    size: 5px;
 }
-
 .container {
     background-color: #fff;
-    opacity: 0.9;
+    border-radius: 25px;
+}
+
+.map-container {
+    opacity: 1.0;
 }
 
 .margin-bttm {
     margin-bottom: 8px;
+}
+
+.map-margins {
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.solid {
+    opacity: 1.0;
+}
+
+.rcorners1 {
+    border-radius: 25px;
 }

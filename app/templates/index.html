@@ -114,9 +114,15 @@
             </div>
         </div>
     </section>
-    </div class="row">
-    {% if mymap %}
-    <div class="col-md-12" style="margin-bottom: 60px;margin-top: 20px;">{{mymap.html}}</div>
-    {% endif %}
+    <hr>
+
+    <div class="map-container">
+        <div class="row solid">
+        {% if mymap %}
+        <div class="col-md-12 map-margins">{{mymap.html}}</div>
+        {% endif %}
+        </div>
+        <hr>
+    </div>
 {% endblock %}
 
