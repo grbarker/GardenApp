@@ -1,4 +1,4 @@
-2018-06-01 15:54:55,479 ERROR: Exception on /user/backyard raised bed, 14/delete [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2018-06-12 14:58:15,748 ERROR: Exception on /api/users [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,13 +12,21 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 216, in delete_garden
-    form = DeleteGardenForm()
-NameError: name 'DeleteGardenForm' is not defined
-2018-06-01 15:55:31,920 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 15:55:53,811 ERROR: Exception on /registerGarden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\api\users.py", line 11, in get_users
+    page = request.args.get('page', 1, type=int)
+NameError: name 'request' is not defined
+2018-06-12 14:58:36,923 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 15:02:51,049 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 15:03:17,926 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 16:45:46,500 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 16:46:14,354 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 16:52:36,567 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 16:54:59,750 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 17:00:29,233 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 17:00:39,552 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 21:11:53,112 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 21:12:16,146 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-12 21:21:11,692 ERROR: Exception on /api/users [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -32,28 +40,95 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 177, in registerGarden
-    lat = responseJSON['results'][0]['geometry']['location']['lat']
-IndexError: list index out of range
-2018-06-01 15:58:40,142 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:01:16,221 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:02:48,550 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:06:30,014 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:08:29,085 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:10:05,186 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:10:27,935 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:10:45,694 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:13:40,095 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:15:16,957 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 16:15:44,117 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 17:33:10,007 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 17:36:12,212 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-01 17:37:13,914 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-05 18:50:56,691 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-05 19:02:35,876 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 14:01:11,097 ERROR: Exception on /post_from_index [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\api\users.py", line 51, in create_user
+    response.headers['Location'] = url_for('api.get_user', id=user.id)
+NameError: name 'url_for' is not defined
+2018-06-12 21:24:14,011 ERROR: Exception on /api/users [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\GardenApp\app\api\users.py", line 42, in create_user
+    return bad_request('please use a different username')
+TypeError: bad_request() takes 0 positional arguments but 1 was given
+2018-06-12 21:24:37,532 ERROR: Exception on /api/users [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\GardenApp\app\api\users.py", line 42, in create_user
+    return bad_request('please use a different username')
+TypeError: bad_request() takes 0 positional arguments but 1 was given
+2018-06-12 21:26:15,118 ERROR: Exception on /api/users [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\GardenApp\app\api\users.py", line 40, in create_user
+    return bad_request('must include username, email and password fields')
+TypeError: bad_request() takes 0 positional arguments but 1 was given
+2018-06-12 21:28:51,479 ERROR: Exception on /api/users [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\GardenApp\app\api\users.py", line 40, in create_user
+    return bad_request('must include username, email and password fields')
+TypeError: bad_request() takes 0 positional arguments but 1 was given
+2018-06-12 21:29:32,135 ERROR: Exception on /api/users [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\GardenApp\app\api\users.py", line 40, in create_user
+    return bad_request('must include username, email and password fields')
+TypeError: bad_request() takes 0 positional arguments but 1 was given
+2018-06-12 21:59:23,865 ERROR: Exception on /api/users/2 [PUT] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -64,48 +139,5 @@ Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1725, in make_response
     raise ValueError('View function did not return a response')
 ValueError: View function did not return a response
-2018-06-06 14:01:41,798 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:01:04,151 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:07:54,142 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:09:18,785 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:10:20,747 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:10:48,070 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:11:51,871 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:12:22,511 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:13:47,237 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:48:09,630 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:49:01,048 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-06 17:49:40,254 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 18:38:52,201 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 18:40:20,528 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 18:41:54,966 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 18:42:26,901 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:16:28,385 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:16:53,823 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:21:27,056 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:21:50,981 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:24:05,608 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:27:01,522 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:27:53,233 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:28:23,525 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:28:56,448 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:30:16,475 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:30:57,414 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:32:21,864 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:33:22,116 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:35:03,447 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:35:46,023 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:37:44,005 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:38:19,053 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:39:43,125 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:40:49,789 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:42:55,067 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 20:45:02,118 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:25:37,709 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:27:18,171 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:27:27,156 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:28:14,968 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:28:40,681 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:28:54,564 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:30:44,840 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
-2018-06-07 21:31:16,811 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:73]
+2018-06-13 13:34:06,611 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-13 13:35:14,960 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
