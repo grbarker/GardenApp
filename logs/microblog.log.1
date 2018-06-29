@@ -1,0 +1,152 @@
+2018-06-20 17:54:18,032 ERROR: Exception on /api/users/3/plants [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\plants.py", line 25, in get_plants_by_user
+    data = User.to_collection_dict(user.plants, page, per_page, 'api.get_plants_by_user', id=id)
+  File "C:\GardenApp\app\models.py", line 19, in to_collection_dict
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 19, in <listcomp>
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 226, in to_dict
+    'garden': self.garden.name,
+AttributeError: 'NoneType' object has no attribute 'name'
+2018-06-20 18:05:08,869 ERROR: Exception on /api/plants [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\plants.py", line 15, in get_plants
+    data = Plant.to_collection_dict(Plant.query, page, per_page, 'api.get_plants')
+AttributeError: type object 'Plant' has no attribute 'to_collection_dict'
+2018-06-20 18:06:30,022 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-20 18:06:37,327 ERROR: Exception on /api/plants [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\plants.py", line 15, in get_plants
+    data = Plant.to_collection_dict(Plant.query, page, per_page, 'api.get_plants')
+  File "C:\GardenApp\app\models.py", line 19, in to_collection_dict
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 19, in <listcomp>
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 226, in to_dict
+    'garden': self.garden.name,
+AttributeError: 'NoneType' object has no attribute 'name'
+2018-06-20 18:08:42,324 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-20 18:11:32,492 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-20 18:11:39,714 ERROR: Exception on /api/plants [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\plants.py", line 15, in get_plants
+    data = Plant.to_collection_dict(Plant.query, page, per_page, 'api.get_plants')
+  File "C:\GardenApp\app\models.py", line 19, in to_collection_dict
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 19, in <listcomp>
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 226, in to_dict
+    'garden': self.garden.name,
+AttributeError: 'NoneType' object has no attribute 'name'
+2018-06-20 18:12:35,850 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-20 18:12:44,088 ERROR: Exception on /api/plants [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\plants.py", line 15, in get_plants
+    data = Plant.to_collection_dict(Plant.query, page, per_page, 'api.get_plants')
+  File "C:\GardenApp\app\models.py", line 19, in to_collection_dict
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 19, in <listcomp>
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 226, in to_dict
+    'address': self.garden.address
+AttributeError: 'NoneType' object has no attribute 'address'
+2018-06-20 18:14:06,191 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-20 18:14:10,343 ERROR: Exception on /api/plants [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\plants.py", line 15, in get_plants
+    data = Plant.to_collection_dict(Plant.query, page, per_page, 'api.get_plants')
+  File "C:\GardenApp\app\models.py", line 19, in to_collection_dict
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 19, in <listcomp>
+    'items': [item.to_dict() for item in resources.items],
+  File "C:\GardenApp\app\models.py", line 227, in to_dict
+    if plant.garden:
+NameError: name 'plant' is not defined
+2018-06-20 18:14:38,912 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-20 23:16:57,940 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2018-06-20 23:19:15,728 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

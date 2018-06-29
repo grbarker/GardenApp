@@ -1,10 +1,12 @@
-from datetime import datetime
+import base64
+from datetime import datetime, timedelta
 from time import time
 from hashlib import md5
 from flask import current_app, url_for
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
+import os
 from app import db, login
 
 
@@ -59,6 +61,8 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
         primaryjoin=(followers.c.follower_id == id),
         secondaryjoin=(followers.c.followed_id == id),
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+    token = db.Column(db.String(32), index=True, unique=True)
+    token_expiration = db.Column(db.DateTime)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -146,9 +150,28 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
         if new_user and 'password' in data:
             self.set_password(data['password'])
 
+    def get_token(self, expires_in=3600):
+        now = datetime.utcnow()
+        if self.token and self.token_expiration > now + timedelta(seconds=60):
+            return self.token
+        self.token = base64.b64encode(os.urandom(24)).decode('utf-8')
+        self.token_expiration = now + timedelta(seconds=expires_in)
+        db.session.add(self)
+        return self.token
+
+    def revoke_token(self):
+        self.token_expiration = datetime.utcnow() - timedelta(seconds=1)
+
+    @staticmethod
+    def check_token(token):
+        user = User.query.filter_by(token=token).first()
+        if user is None or user.token_expiration < datetime.utcnow():
+            return None
+        return user
 
 
-class Post(db.Model):
+
+class Post(PaginatedAPIMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -156,6 +179,16 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+
+    def to_dict(self):
+        data = {
+            'id': self.id,
+            'body': self.body,
+            'timestamp': self.timestamp.isoformat() + 'Z',
+            'user': self.author.username
+        }
+        return data
 
 
 
@@ -173,7 +206,7 @@ class Garden(db.Model):
 
 
 
-class Plant(db.Model):
+class Plant(PaginatedAPIMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -183,6 +216,21 @@ class Plant(db.Model):
     def __repr__(self):
         return '<Plant {}>'.format(self.name)
 
+
+    def to_dict(self):
+        data = {
+            'id': self.id,
+            'name': self.name,
+            'timestamp': self.timestamp.isoformat() + 'Z',
+            'grower': self.grower.username
+        }
+        if self.garden:
+            data['garden'] = self.garden.name
+            data['address'] = self.garden.address
+        else:
+            data['garden'] = 'No garden associated with this plant.',
+            data['address'] = 'No address associated with this plant.'
+        return data
 
 @login.user_loader
 def load_user(id):

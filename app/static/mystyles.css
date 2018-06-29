@@ -1,10 +1,9 @@
-html {
-    height: 100%;
-}
 
-body {
-    background-color: #008000;
-    height: 100%;
+html, body {
+    background-image: url('./pics/tim-mossholder-244857-unsplash-8xlarge_2800.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 hr {
@@ -33,5 +32,6 @@ hr {
 }
 
 .rcorners1 {
-    border-radius: 25px;
+
+   border-radius: 25px;
 }
