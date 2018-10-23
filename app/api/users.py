@@ -2,13 +2,49 @@ from app import db
 from app.api import bp
 from app.api.errors import bad_request
 from app.api.auth import token_auth
-from flask import jsonify, request, url_for
+from flask import jsonify, request, url_for, g
 from app.models import User
 
 @bp.route('/users/<int:id>', methods=['GET'])
 @token_auth.login_required
 def get_user(id):
     return jsonify(User.query.get_or_404(id).to_dict())
+
+@bp.route('/user', methods=['GET'])
+@token_auth.login_required
+def get_user_by_token():
+    id = g.current_user.id
+    return jsonify(User.query.get_or_404(id).to_dict())
+
+@bp.route('/user/followers', methods=['GET'])
+@token_auth.login_required
+def get_followers_by_token():
+    id = g.current_user.id
+    user = User.query.get_or_404(id)
+    page = request.args.get('page', 1, type=int)
+    per_page = min(request.args.get('per_page', 10, type=int), 100)
+    data = User.to_collection_dict(user.followers, page, per_page,
+                                   'api.get_followers', id=id)
+    return jsonify(data)
+
+@bp.route('/user/followed', methods=['GET'])
+@token_auth.login_required
+def get_followed_by_token():
+    id = g.current_user.id
+    user = User.query.get_or_404(id)
+    page = request.args.get('page', 1, type=int)
+    per_page = min(request.args.get('per_page', 10, type=int), 100)
+    data = User.to_collection_dict(user.followed, page, per_page,
+                                   'api.get_followed', id=id)
+    return jsonify(data)
+
+
+@bp.route('/user/<username>', methods=['GET'])
+@token_auth.login_required
+def get_user_by_username(username):
+    user = User.query.filter_by(username=username).first()
+    return jsonify(user.to_dict())
+
 
 @bp.route('/users', methods=['GET'])
 @token_auth.login_required
