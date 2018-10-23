@@ -102,11 +102,13 @@ def explore():
             lon = garden.lon
             coord = (lat, lon)
             garden_plants = garden.plants.all()
-            #handle the case where two markers would be placed in hte exact same spot, where only one would be visible and usable in the google maps once rendered
+            #Handle the case where two markers would be placed in the exact same spot, where only
+            #one would be visible and usable in the google maps once rendered
             if coord in coords:
-                #find the index of the first garden for a given coord
+                #Find the index of the first garden for a given coord
                 index = coords.index(coord)
-                #use index of given coord to select the corresponding location_for_markers in its list and extend the plants list
+                #Use index of given coord to select the corresponding location_for_markers in its
+                #list and extend the plants list
                 locations_for_markers[index][2].extend(garden_plants)
             elif coord not in coords:
                 coords.append(coord)
@@ -166,7 +168,7 @@ def plant():
         return redirect(url_for('main.index'))
 
 
-
+#Note: the Google API address might/will change in the future
 @bp.route('/registerGarden', methods=['GET', 'POST'])
 @login_required
 def registerGarden():
