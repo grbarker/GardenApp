@@ -186,13 +186,14 @@ class Post(PaginatedAPIMixin, db.Model):
             'id': self.id,
             'body': self.body,
             'timestamp': self.timestamp.isoformat() + 'Z',
-            'user': self.author.username
+            'user': self.author.username,
+            'user_id': self.author.id
         }
         return data
 
 
 
-class Garden(db.Model):
+class Garden(PaginatedAPIMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140), index=True)
     address = db.Column(db.String(200), index=True)
@@ -204,6 +205,23 @@ class Garden(db.Model):
     def __repr__(self):
         return '<Garden {}>'.format(self.name)
 
+
+    def to_dict(self):
+        plants = self.plants
+        plants_dict = []
+        for plant in plants:
+            plant_obj = Plant.to_dict(plant)
+            plants_dict.append(plant_obj)
+        data = {
+            'id': self.id,
+            'name': self.name,
+            'address': self.address,
+            'lat': self.lat,
+            'lon': self.lon,
+            'created': self.created.isoformat() + 'Z',
+            'plants': plants_dict
+        }
+        return data
 
 
 class Plant(PaginatedAPIMixin, db.Model):
@@ -227,9 +245,13 @@ class Plant(PaginatedAPIMixin, db.Model):
         if self.garden:
             data['garden'] = self.garden.name
             data['address'] = self.garden.address
+            data['lat'] = self.garden.lat
+            data['lon'] = self.garden.lon
         else:
-            data['garden'] = 'No garden associated with this plant.',
-            data['address'] = 'No address associated with this plant.'
+            data['garden'] = None
+            data['address'] = None
+            data['lat'] = None
+            data['lon'] = None
         return data
 
 @login.user_loader
