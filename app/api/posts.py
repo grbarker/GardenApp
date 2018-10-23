@@ -2,7 +2,7 @@ from app import db
 from app.api import bp
 from app.api.errors import bad_request
 from app.api.auth import token_auth
-from flask import jsonify, request, url_for
+from flask import jsonify, request, url_for, g
 from app.models import Post, Plant, User
 
 
@@ -15,9 +15,10 @@ def get_posts():
     data = Post.to_collection_dict(Post.query, page, per_page, 'api.get_posts')
     return jsonify(data)
 
-@bp.route('/users/<int:id>/posts', methods=['GET'])
+@bp.route('/user/posts', methods=['GET'])
 @token_auth.login_required
-def get_posts_by_user(id):
+def get_posts_by_user():
+    id = g.current_user.id
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
     per_page = min(request.args.get('per_page', 10, type=int), 100)
