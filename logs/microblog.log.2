@@ -1,0 +1,149 @@
+2019-02-12 12:52:56,978 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 124, in get_current_user_gardens
+    data = User.to_collection_dict(user.gardens, page, per_page, 'api.get_current_user_gardens', id=id)
+  File "C:\GardenApp\app\models.py", line 17, in to_collection_dict
+    resources = query.paginate(page, per_page, False)
+AttributeError: 'InstrumentedList' object has no attribute 'paginate'
+2019-02-12 12:53:43,336 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-12 13:15:05,217 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 124, in get_current_user_gardens
+    data = User.to_collection_dict(user.gardens, page, per_page, 'api.get_current_user_gardens', id=id)
+  File "C:\GardenApp\app\models.py", line 17, in to_collection_dict
+    resources = query.paginate(page, per_page, False)
+AttributeError: 'InstrumentedList' object has no attribute 'paginate'
+2019-02-12 13:19:17,399 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-12 13:19:26,478 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-12 13:20:57,205 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-12 13:23:23,346 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-12 13:23:26,388 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 124, in get_current_user_gardens
+    data = User.to_collection_dict(User.user_gardens(), page, per_page, 'api.get_current_user_gardens', id=id)
+TypeError: user_gardens() missing 1 required positional argument: 'self'
+2019-02-12 13:26:23,427 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-12 13:26:24,977 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 124, in get_current_user_gardens
+    data = User.to_collection_dict(User.user_gardens, page, per_page, 'api.get_current_user_gardens', id=id)
+  File "C:\GardenApp\app\models.py", line 17, in to_collection_dict
+    resources = query.paginate(page, per_page, False)
+AttributeError: 'function' object has no attribute 'paginate'
+2019-02-12 13:26:48,176 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-12 13:26:50,562 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\sqlalchemy\orm\attributes.py", line 190, in __getattr__
+    return getattr(self.comparator, key)
+AttributeError: 'Comparator' object has no attribute 'paginate'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 124, in get_current_user_gardens
+    data = User.to_collection_dict(User.gardens, page, per_page, 'api.get_current_user_gardens', id=id)
+  File "C:\GardenApp\app\models.py", line 17, in to_collection_dict
+    resources = query.paginate(page, per_page, False)
+  File "c:\gardenapp\blogvenv\lib\site-packages\sqlalchemy\orm\attributes.py", line 198, in __getattr__
+    key)
+AttributeError: Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with User.gardens has an attribute 'paginate'
+2019-02-12 13:34:20,119 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\sqlalchemy\orm\attributes.py", line 190, in __getattr__
+    return getattr(self.comparator, key)
+AttributeError: 'Comparator' object has no attribute 'paginate'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 124, in get_current_user_gardens
+    }
+  File "C:\GardenApp\app\models.py", line 17, in to_collection_dict
+    resources = query.paginate(page, per_page, False)
+  File "c:\gardenapp\blogvenv\lib\site-packages\sqlalchemy\orm\attributes.py", line 198, in __getattr__
+    key)
+AttributeError: Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with User.gardens has an attribute 'paginate'
