@@ -2,9 +2,22 @@ from app import db
 from app.api import bp
 from app.api.errors import bad_request
 from app.api.auth import token_auth
-from flask import jsonify, request, url_for
+from flask import jsonify, request, url_for, g
 from app.models import Garden, User, Plant
 
+
+
+
+@bp.route('/user/gardens', methods=['GET'])
+@token_auth.login_required
+def get_current_user_gardens():
+    id = g.current_user.id
+    user = User.query.get_or_404(id)
+    gardens = user.gardens
+    page = request.args.get('page', 1, type=int)
+    per_page = min(request.args.get('per_page', 10, type=int), 100)
+    data = User.to_collection_dict(user.user_gardens(), page, per_page, 'api.get_current_user_gardens')
+    return jsonify(data)
 
 
 @bp.route('/gardens/map', methods=['GET'])
