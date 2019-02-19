@@ -7,6 +7,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import os
+from sqlalchemy import desc
 from app import db, login
 
 
@@ -94,6 +95,12 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     def usergardens(self):
         gardens = self.gardens
         return gardens
+
+    def user_gardens(self):
+        gardens = Garden.query.join(
+            users_gardens, (users_gardens.c.garden_id == Garden.id)).filter(
+                users_gardens.c.user_id == self.id)
+        return gardens.order_by(desc(Garden.created))
 
     def followed_posts(self):
         followed = Post.query.join(
