@@ -9,3 +9,45 @@
 2019-02-19 14:39:44,806 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
 2019-02-19 14:43:30,024 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
 2019-02-19 14:45:49,912 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-19 14:47:10,026 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-19 14:53:56,631 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-19 15:01:27,213 ERROR: Exception on /api/user/post [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\posts.py", line 55, in submit_user_post_by_token
+    response.headers['Location'] = url_for('api.get_posts')
+AttributeError: 'dict' object has no attribute 'headers'
+2019-02-19 15:02:44,560 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-19 15:02:48,424 ERROR: Exception on /api/user/post [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\posts.py", line 55, in submit_user_post_by_token
+    response.body = post.to_dict()
+AttributeError: 'dict' object has no attribute 'body'
+2019-02-19 15:07:34,741 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
