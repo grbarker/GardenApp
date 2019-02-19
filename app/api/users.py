@@ -5,6 +5,7 @@ from app.api.auth import token_auth
 from flask import jsonify, request, url_for, g
 from app.models import User
 
+
 @bp.route('/users/<int:id>', methods=['GET'])
 @token_auth.login_required
 def get_user(id):
