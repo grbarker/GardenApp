@@ -1,6 +1,8 @@
 import os
+from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-might-guess-sometime'
@@ -13,7 +15,7 @@ class Config(object):
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') or 1
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'flaskapperrors'
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')or 'wgswtrq9gs'
-    ADMINS = ['your-email@example.com']
+    ADMINS = ['flaskapperrors@gmail.com']
     POSTS_PER_PAGE = 4
     PLANTS_PER_PAGE = 4
     GOOGLEMAPS_KEY = 'AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'
