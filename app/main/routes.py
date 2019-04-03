@@ -193,8 +193,21 @@ def registerGarden():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    plants = current_user.followed_plants().all()
-    return render_template('user.html', user=user, plants=plants)
+    posts_page = request.args.get('posts_page', 1, type=int)
+    plants_page = request.args.get('plants_page', 1, type=int)
+    posts = user.posts.paginate(
+        posts_page, current_app.config['POSTS_PER_PAGE'], False)
+    plants = user.plants.paginate(
+        plants_page, current_app.config['PLANTS_PER_PAGE'], False)
+    plants_next_url = url_for('main.index', plants_page=plants.next_num, posts_page=posts_page) \
+        if plants.has_next else None
+    plants_prev_url = url_for('main.index', plants_page=plants.prev_num, posts_page=posts_page) \
+        if plants.has_prev else None
+    posts_next_url = url_for('main.index', plants_page=plants_page, posts_page=posts.next_num) \
+        if posts.has_next else None
+    posts_prev_url = url_for('main.index', plants_page=plants_page, posts_page=posts.prev_num) \
+        if posts.has_prev else None
+    return render_template('user.html', user=user, plants=plants.items, posts=posts.items)
 
 
 @bp.route('/user/<garden_name>, <garden_id>', methods=['GET', 'POST'])

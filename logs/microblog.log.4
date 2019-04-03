@@ -1,4 +1,4 @@
-2018-07-13 15:52:33,303 ERROR: Exception on /api/gardens/maps [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2019-02-24 23:13:14,864 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,36 +14,77 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
     return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 48, in get_all_gardens_for_maps
-    return jsonify(locations_for_markers)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 263, in jsonify
-    (dumps(data, indent=indent, separators=separators), '\n'),
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 123, in dumps
-    rv = _json.dumps(obj, **kwargs)
-  File "C:\Python36\lib\json\__init__.py", line 238, in dumps
-    **kw).encode(obj)
-  File "C:\Python36\lib\json\encoder.py", line 201, in encode
-    chunks = list(chunks)
-  File "C:\Python36\lib\json\encoder.py", line 428, in _iterencode
-    yield from _iterencode_list(o, _current_indent_level)
-  File "C:\Python36\lib\json\encoder.py", line 325, in _iterencode_list
-    yield from chunks
-  File "C:\Python36\lib\json\encoder.py", line 325, in _iterencode_list
-    yield from chunks
-  File "C:\Python36\lib\json\encoder.py", line 325, in _iterencode_list
-    yield from chunks
-  File "C:\Python36\lib\json\encoder.py", line 437, in _iterencode
-    o = _default(o)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 80, in default
-    return _json.JSONEncoder.default(self, o)
-  File "C:\Python36\lib\json\encoder.py", line 180, in default
-    o.__class__.__name__)
-TypeError: Object of type 'Plant' is not JSON serializable
-2018-07-13 15:56:17,067 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-13 16:06:56,888 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-13 16:15:48,114 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-13 16:30:00,234 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-13 16:30:07,044 ERROR: Exception on /api/locations/maps [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\api\gardens.py", line 24, in submit_user_garden_by_token
+    response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(garden_address))
+NameError: name 'requests' is not defined
+2019-02-24 23:15:08,063 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-24 23:15:13,519 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 91, in decorated
+    return self.auth_error_callback()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 43, in decorated
+    res = f(*args, **kwargs)
+  File "C:\GardenApp\app\api\auth.py", line 29, in token_auth_error
+    return error_response(401)
+TypeError: error_response() missing 1 required positional argument: 'message'
+2019-02-24 23:17:28,714 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-24 23:17:31,219 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 91, in decorated
+    return self.auth_error_callback()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 43, in decorated
+    res = f(*args, **kwargs)
+  File "C:\GardenApp\app\api\auth.py", line 29, in token_auth_error
+    return error_response(401)
+TypeError: error_response() missing 1 required positional argument: 'message'
+2019-02-24 23:18:21,455 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-24 23:18:24,575 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 91, in decorated
+    return self.auth_error_callback()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 43, in decorated
+    res = f(*args, **kwargs)
+  File "C:\GardenApp\app\api\auth.py", line 29, in token_auth_error
+    return error_response(401)
+TypeError: error_response() missing 1 required positional argument: 'message'
+2019-02-24 23:21:33,140 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-24 23:21:59,994 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -59,27 +100,10 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
     return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 45, in get_locations_for_map_markers
-    locations_for_markers[index][3].append(garden_name)
-KeyError: 3
-2018-07-13 16:31:04,344 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 13:22:27,281 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 13:45:48,917 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 13:47:10,043 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 13:50:22,481 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 18:02:25,361 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 18:11:14,054 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 18:11:19,588 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-08 18:11:28,619 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-08-15 16:44:10,473 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-11 13:47:48,017 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-12 13:45:28,074 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-12 14:10:21,671 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-13 14:36:27,065 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-13 16:01:50,813 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-13 20:19:35,568 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-25 22:35:27,149 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-25 22:39:32,038 ERROR: Exception on /api/user/followed [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\api\gardens.py", line 37, in submit_user_garden_by_token
+    garden.users.append(current_user)
+NameError: name 'current_user' is not defined
+2019-02-24 23:23:17,076 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -95,23 +119,15 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
     return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\users.py", line 46, in get_user_by_username
-    return jsonify(user.to_dict())
-AttributeError: 'NoneType' object has no attribute 'to_dict'
-2018-09-25 22:40:24,351 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-26 22:30:42,185 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-26 22:52:41,598 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-26 22:55:27,201 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-26 23:02:30,416 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-26 23:03:57,386 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-09-26 23:08:51,210 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-17 15:06:05,216 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 11:27:38,334 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 11:53:26,411 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 12:27:37,612 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:10:58,221 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:11:13,385 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:13:57,672 ERROR: Exception on /api/locations [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\api\gardens.py", line 37, in submit_user_garden_by_token
+    garden.users.append(g.current_user)
+NameError: name 'current_user' is not defined
+2019-02-24 23:24:32,182 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-25 13:55:23,408 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-25 14:06:15,694 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-25 14:52:54,633 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-25 14:54:34,632 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-02-25 14:54:44,644 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -127,18 +143,6 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
     return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 108, in get_locations
-    locations_for_markers.append(location_for_markers)
-NameError: name 'locations_for_markers' is not defined
-2018-10-21 13:21:53,610 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:30:33,783 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:32:05,737 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:46:48,048 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:50:57,697 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 13:53:37,202 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 14:12:01,145 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 14:49:54,290 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 14:52:28,093 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 14:53:08,609 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 16:39:11,938 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-21 16:48:27,929 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+  File "C:\GardenApp\app\api\gardens.py", line 30, in submit_user_garden_by_token
+    return bad_request("Google Maps Geocode API return an error:  ", error)
+TypeError: bad_request() takes 1 positional argument but 2 were given

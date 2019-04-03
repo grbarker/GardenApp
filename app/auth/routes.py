@@ -63,7 +63,8 @@ def logout():
     logout_user()
     return redirect(url_for('main.index'))
 
-
+#Need to either make usernames unique (My personal choice) or change the
+#queries that go by username to go by username and ID, or just ID
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
