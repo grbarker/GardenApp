@@ -1,17 +1,22 @@
-2018-10-22 15:28:57,979 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-22 15:45:13,098 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-22 15:47:45,975 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-22 20:40:42,535 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-23 11:00:52,406 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-23 11:05:18,385 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-23 11:13:06,176 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:23:58,382 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:39:44,806 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:43:30,024 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:45:49,912 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:47:10,026 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:53:56,631 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:01:27,213 ERROR: Exception on /api/user/post [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2019-03-20 14:11:40,770 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1740, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\wrappers.py", line 59, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'Response' object is not callable
+2019-03-20 14:12:24,473 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:12:30,574 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -27,11 +32,25 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
     return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\posts.py", line 55, in submit_user_post_by_token
-    response.headers['Location'] = url_for('api.get_posts')
-AttributeError: 'dict' object has no attribute 'headers'
-2019-02-19 15:02:44,560 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:02:48,424 ERROR: Exception on /api/user/post [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\api\gardens.py", line 78, in reverse_geocode_by_token
+    return jsonify(response)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 263, in jsonify
+    (dumps(data, indent=indent, separators=separators), '\n'),
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 123, in dumps
+    rv = _json.dumps(obj, **kwargs)
+  File "C:\Python36\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Python36\lib\json\encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "C:\Python36\lib\json\encoder.py", line 437, in _iterencode
+    o = _default(o)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 80, in default
+    return _json.JSONEncoder.default(self, o)
+  File "C:\Python36\lib\json\encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'Response' is not JSON serializable
+2019-03-20 14:14:42,949 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:14:48,843 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -47,13 +66,15 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
     return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\posts.py", line 55, in submit_user_post_by_token
-    response.body = post.to_dict()
-AttributeError: 'dict' object has no attribute 'body'
-2019-02-19 15:07:34,741 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:16:48,826 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:19:21,113 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:22:31,743 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "C:\GardenApp\app\api\gardens.py", line 78, in reverse_geocode_by_token
+    for r in response['results']:
+TypeError: 'Response' object is not subscriptable
+2019-03-20 14:15:26,298 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:16:03,361 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:17:12,313 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:17:46,708 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:22:40,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:22:42,909 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -69,6 +90,58 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
     return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 19, in get_current_user_gardens
-    data = User.to_collection_dict(user.user_gardens(), page, per_page, 'api.get_current_user_gardens')
-AttributeError: 'User' object has no attribute 'user_gardens'
+  File "C:\GardenApp\app\api\gardens.py", line 81, in reverse_geocode_by_token
+    indices.append(index)
+NameError: name 'index' is not defined
+2019-03-20 14:24:11,484 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:24:15,145 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 82, in reverse_geocode_by_token
+    result = {results, indices}
+TypeError: unhashable type: 'list'
+2019-03-20 14:25:20,131 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:31:45,366 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:31:51,959 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
+    return f(*args, **kwargs)
+  File "C:\GardenApp\app\api\gardens.py", line 82, in reverse_geocode_by_token
+    results = results[::6]
+UnboundLocalError: local variable 'results' referenced before assignment
+2019-03-20 14:32:13,602 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:33:35,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-20 14:35:46,102 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-28 17:26:35,329 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-31 00:17:49,991 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-31 01:24:20,266 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-31 01:25:30,461 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-31 16:49:12,127 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-31 16:50:27,002 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-03-31 16:51:17,778 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-04-02 14:23:39,889 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

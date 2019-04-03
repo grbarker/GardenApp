@@ -46,6 +46,11 @@ users_gardens = db.Table('users_gardens',
     db.Column('garden_id', db.Integer, db.ForeignKey('garden.id'))
 )
 
+wall_posts = db.Table('wall_posts',
+    db.Column('wall_owner_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('poster_id', db.Integer, db.ForeignKey('garden.id'))
+)
+
 
 class User(PaginatedAPIMixin, UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)

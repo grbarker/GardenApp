@@ -4,9 +4,86 @@ from app.api.errors import bad_request
 from app.api.auth import token_auth
 from flask import jsonify, request, url_for, g
 from app.models import Garden, User, Plant
+import requests
 
 
+#Note validation needs to be added for the address. Going to see if Google Maps
+#API handles bad addresses, so I could then take the error from the response
+#given back by Google Maps API.
+@bp.route('/user/garden', methods=['POST'])
+@token_auth.login_required
+def submit_user_garden_by_token():
+    id = g.current_user.id
+    user = User.query.get(id)
+    data = request.get_json() or {}
+    garden_name = data['gardenName']
+    garden_address = data['gardenAddress']
+    if garden_name is None:
+        return bad_request('No garden name found.')
+    if garden_address is None:
+        return bad_request('No address found.')
+    response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(garden_address))
+    responseJSON = response.json()
+    #This is the address validation. Cannot do any validation client-side as
+    #I have no knowledge of how to validate a physical address other than
+    #that the client-side form field(in my case React-Native/Redux) is not empty.
+    #So Google is tasked with validating the addresses from the mobile app submission.
+    #ZERO_RESULTS status means google did not find an address. So INVALID ADDRESS it is.
+    if responseJSON['status'] == "ZERO_RESULTS":
+        error = responseJSON['status']
+        response = jsonify({"error": error})
+        return bad_request("Invalid Address")
+    elif responseJSON['status'] == "OK":
+        gard = Garden.query.filter_by(name=garden_name, address=garden_address).first()
+        if gard is not None:
+            return bad_request('Garden already exists!')
+        lat = responseJSON['results'][0]['geometry']['location']['lat']
+        lon = responseJSON['results'][0]['geometry']['location']['lng']
+        garden = Garden(name=garden_name, address=garden_address, lat=lat, lon=lon)
+        garden.users.append(g.current_user)
+        db.session.add(garden)
+        db.session.commit()
+        #response.status_code = 201
+        #response = plant.to_dict()
+        response = jsonify(garden.to_dict())
+        response.headers['Location'] = url_for('api.get_current_user_gardens')
+        return response
+    else:
+        return bad_request('Uknown error from Google Maps API Geocode.')
 
+
+@bp.route('/user/reverse_geocode', methods=['POST'])
+@token_auth.login_required
+def reverse_geocode_by_token():
+    data = request.get_json() or {}
+    lat = data['lat']
+    lon = data['lon']
+    if lat is None:
+        return bad_request('No garden name found.')
+    if lon is None:
+        return bad_request('No address found.')
+    response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?latlng={},{}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(lat, lon))
+    responseJSON = response.json()
+    #This is the address validation. Cannot do any validation client-side as
+    #I have no knowledge of how to validate a physical address other than
+    #that the client-side form field(in my case React-Native/Redux) is not empty.
+    #So Google is tasked with validating the addresses from the mobile app submission.
+    #ZERO_RESULTS status means google did not find an address. So INVALID ADDRESS it is.
+    if responseJSON['status'] == "ZERO_RESULTS":
+        error = responseJSON['status']
+        response = jsonify({"error": error})
+        return bad_request("Invalid Address")
+    elif responseJSON['status'] == "OK":
+        all_results = []
+        indices = []
+        for r in responseJSON["results"]:
+            all_results.append(r["formatted_address"])
+            indices.append(responseJSON["results"].index(r))
+        results = all_results[:6]
+        result = { "results": results }
+        return jsonify(result)
+    else:
+        return bad_request('Uknown error from Google Maps API Geocode.')
 
 @bp.route('/user/gardens', methods=['GET'])
 @token_auth.login_required
