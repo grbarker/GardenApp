@@ -6,7 +6,7 @@ from werkzeug.urls import url_parse
 from app.models import User, Plant, Garden, Post
 from app import db
 from app.main import bp
-from app.main.forms import EditProfileForm, PostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage, DeleteGardenForm
+from app.main.forms import EditProfileForm, PostForm, WallPostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage, DeleteGardenForm
 import sys
 import requests
 
@@ -189,25 +189,44 @@ def registerGarden():
     return render_template('registerGarden.html', title='Register Garden', form=form)
 
 #Note: add post and plant pagination for user page
-@bp.route('/user/<username>')
+@bp.route('/user/<username>', methods =['GET', 'POST'])
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
+    form = WallPostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.wall_post.data, author=current_user, wall_post=True, wall_owner_id=user.id)
+        db.session.add(post)
+        db.session.commit()
+        flash("You posted to {}'s wall!".format(username))
+        return redirect(url_for('main.user'))
+
     posts_page = request.args.get('posts_page', 1, type=int)
+    wall_posts_page = request.args.get('wall_posts_page', 1, type=int)
     plants_page = request.args.get('plants_page', 1, type=int)
+
     posts = user.posts.paginate(
         posts_page, current_app.config['POSTS_PER_PAGE'], False)
+    wall_posts = Post.query.filter_by(wall_owner_id=user.id).paginate(
+        wall_posts_page, current_app.config['POSTS_PER_PAGE'], False)
     plants = user.plants.paginate(
         plants_page, current_app.config['PLANTS_PER_PAGE'], False)
+
     plants_next_url = url_for('main.index', plants_page=plants.next_num, posts_page=posts_page) \
         if plants.has_next else None
     plants_prev_url = url_for('main.index', plants_page=plants.prev_num, posts_page=posts_page) \
         if plants.has_prev else None
+
     posts_next_url = url_for('main.index', plants_page=plants_page, posts_page=posts.next_num) \
         if posts.has_next else None
     posts_prev_url = url_for('main.index', plants_page=plants_page, posts_page=posts.prev_num) \
+        if wall_posts.has_prev else None
+
+    wall_posts_next_url = url_for('main.index', plants_page=plants_page, wall_posts_page=wall_posts.next_num) \
+        if wall_posts.has_next else None
+    wall_posts_prev_url = url_for('main.index', plants_page=plants_page, wall_posts_page=wall_posts.prev_num) \
         if posts.has_prev else None
-    return render_template('user.html', user=user, plants=plants.items, posts=posts.items)
+    return render_template('user.html', user=user, plants=plants.items, posts=posts.items, wall_posts=wall_posts.items, form=form)
 
 
 @bp.route('/user/<garden_name>, <garden_id>', methods=['GET', 'POST'])

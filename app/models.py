@@ -197,7 +197,9 @@ class Post(PaginatedAPIMixin, db.Model):
             'body': self.body,
             'timestamp': self.timestamp.isoformat() + 'Z',
             'user': self.author.username,
-            'user_id': self.author.id
+            'user_id': self.author.id,
+            'wall_post' : self.wall_post,
+            'wall_owner_id' : self.wall_owner_id
         }
         return data
 
