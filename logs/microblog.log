@@ -137,3 +137,6 @@ TypeError: 'Pagination' object is not iterable
 2019-04-03 00:38:54,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
 2019-04-03 00:41:20,144 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
 2019-04-03 12:03:12,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-04-03 18:10:49,556 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-04-03 18:10:55,673 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-04-03 18:11:02,119 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

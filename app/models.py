@@ -46,10 +46,6 @@ users_gardens = db.Table('users_gardens',
     db.Column('garden_id', db.Integer, db.ForeignKey('garden.id'))
 )
 
-wall_posts = db.Table('wall_posts',
-    db.Column('wall_owner_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('poster_id', db.Integer, db.ForeignKey('garden.id'))
-)
 
 
 class User(PaginatedAPIMixin, UserMixin, db.Model):
@@ -188,6 +184,8 @@ class Post(PaginatedAPIMixin, db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    wall_post = db.Column(db.Boolean, default=False)
+    wall_owner_id = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
