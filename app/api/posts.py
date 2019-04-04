@@ -35,6 +35,15 @@ def get_user_posts(id):
     data = User.to_collection_dict(user.posts.order_by(desc(Post.timestamp)), page, per_page, 'api.get_user_posts', id=id)
     return jsonify(data)
 
+@bp.route('/user/<int:id>/wall_posts', methods=['GET'])
+@token_auth.login_required
+def get_user_wall_posts(id):
+    user = User.query.get_or_404(id)
+    page = request.args.get('page', 1, type=int)
+    per_page = min(request.args.get('per_page', 10, type=int), 100)
+    data = User.to_collection_dict(Post.query.filter_by(wall_owner_id=user.id).order_by(desc(Post.timestamp)), page, per_page, 'api.get_user_posts', id=id)
+    return jsonify(data)
+
 
 # It is the response.status_code, response.headers, response.anything that
 # was causing an internal server error on the client side. Needed to move
