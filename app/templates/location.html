@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="row padding">
+        <div class="col-md-5">
+            <h1>{{address}}</h1>
+            <h3>
+                <span> {{gardens| length}} Gardens,  </span>
+                <span> {{plants| length}} Plants,  </span>
+                <span> {{users| length}} Users</span>
+            </h3>
+            {% for plant in plants %}
+            <p>{{plant.name}}</p>
+            {% endfor %}
+
+            {% for garden in gardens %}
+            <div class="row garden-row">
+                <div class="col-md-12">
+                    <h4>{{garden.name}}</h4>
+                        {% for plant in garden.plants.all() %}
+                        <p style="color: green"><strong>{{plant.name}}</strong>  - planted {{ moment(plant.timestamp).fromNow() }}</p>
+                        {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-7" style="padding: 20px;">
+            <iframe width="100%" height="700" frameborder="0" style="border:0," src="https://www.google.com/maps/embed/v1/streetview?location={{lat}},{{lon}}&key={{key}}" allowfullscreen></iframe>
+        </div>
+    </div>
+{% endblock %}
+
+

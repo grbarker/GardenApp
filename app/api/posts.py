@@ -13,7 +13,7 @@ from sqlalchemy import desc
 def get_posts():
     page = request.args.get('page', 1, type=int)
     per_page = min(request.args.get('per_page', 10, type=int), 100)
-    data = Post.to_collection_dict(Post.query.order_by(desc(Post.timestamp)), page, per_page, 'api.get_posts')
+    data = Post.to_collection_dict(Post.query.filter((Post.wall_post == False) | (Post.wall_post == None)).order_by(desc(Post.timestamp)), page, per_page, 'api.get_posts')
     return jsonify(data)
 
 @bp.route('/user/posts', methods=['GET'])
@@ -41,7 +41,7 @@ def get_user_wall_posts(id):
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
     per_page = min(request.args.get('per_page', 10, type=int), 100)
-    data = User.to_collection_dict(Post.query.filter_by(wall_owner_id=user.id).order_by(desc(Post.timestamp)), page, per_page, 'api.get_user_posts', id=id)
+    data = User.to_collection_dict(Post.query.filter_by(wall_owner_id=user.id).order_by(desc(Post.timestamp)), page, per_page, 'api.get_user_wall_posts', id=id)
     return jsonify(data)
 
 

@@ -1,0 +1,121 @@
+2019-05-06 13:21:15,437 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 76, in index
+    plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, mymap=mymap, gardens=gardens)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\base.html", line 61, in template
+    {% block scripts %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "C:\GardenApp\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\base.html", line 61, in template
+    {% block scripts %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 543, in _generate
+    optimized=self.optimized)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\compiler.py", line 82, in generate
+    generator.visit(node)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\visitor.py", line 38, in visit
+    return f(node, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\compiler.py", line 718, in visit_Template
+    self.fail('block %r defined twice' % block.name, block.lineno)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\compiler.py", line 315, in fail
+    raise TemplateAssertionError(msg, lineno, self.name, self.filename)
+jinja2.exceptions.TemplateAssertionError: block 'scripts' defined twice
+2019-05-06 13:21:42,280 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 13:23:49,333 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 13:55:27,582 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 13:56:19,828 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 13:57:45,178 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 13:58:35,718 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:02:26,183 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:04:00,168 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:06:40,222 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:07:08,285 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:13:00,314 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:14:22,213 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:15:09,008 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:29:40,721 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 14:31:40,566 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:22:01,115 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:23:00,248 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:24:52,736 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:26:31,793 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:31:26,399 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:32:06,060 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:33:42,158 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:40:32,829 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:43:36,120 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 18:44:47,368 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-06 22:40:42,025 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 01:45:34,832 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 01:47:45,451 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 01:48:32,124 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 01:49:26,411 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 01:49:49,118 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 01:57:09,003 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:00:59,189 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:01:29,397 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:02:20,408 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:02:41,022 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:10:58,313 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:12:07,209 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:12:17,296 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:16:56,629 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-07 02:18:08,778 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 12:59:31,973 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:03:39,899 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:04:50,730 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:37:07,809 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:43:42,913 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:49:24,413 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:49:27,084 ERROR: Exception on /explore [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 194, in explore
+    location_link = '<a href="\{\{ url_for(\'main.location\', address={}) \}\}">Go to Location</a>'.format(address)
+ValueError: unexpected '{' in field name
+2019-05-09 13:50:26,132 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:52:36,373 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

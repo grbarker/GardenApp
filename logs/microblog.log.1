@@ -1,22 +1,4 @@
-2019-03-20 14:11:40,770 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
-Traceback (most recent call last):
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
-    return self.finalize_request(rv)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1630, in finalize_request
-    response = self.make_response(rv)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1740, in make_response
-    rv = self.response_class.force_type(rv, request.environ)
-  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\wrappers.py", line 921, in force_type
-    response = BaseResponse(*_run_wsgi_app(response, environ))
-  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\wrappers.py", line 59, in _run_wsgi_app
-    return _run_wsgi_app(*args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\test.py", line 923, in run_wsgi_app
-    app_rv = app(environ, start_response)
-TypeError: 'Response' object is not callable
-2019-03-20 14:12:24,473 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:12:30,574 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2019-05-09 13:52:44,180 ERROR: Exception on /location/5606 SE Cesar Estrada Chavez Blvd, Portland, OR 97202 [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -30,27 +12,43 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 78, in reverse_geocode_by_token
-    return jsonify(response)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 263, in jsonify
-    (dumps(data, indent=indent, separators=separators), '\n'),
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 123, in dumps
-    rv = _json.dumps(obj, **kwargs)
-  File "C:\Python36\lib\json\__init__.py", line 238, in dumps
-    **kw).encode(obj)
-  File "C:\Python36\lib\json\encoder.py", line 201, in encode
-    chunks = list(chunks)
-  File "C:\Python36\lib\json\encoder.py", line 437, in _iterencode
-    o = _default(o)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 80, in default
-    return _json.JSONEncoder.default(self, o)
-  File "C:\Python36\lib\json\encoder.py", line 180, in default
-    o.__class__.__name__)
-TypeError: Object of type 'Response' is not JSON serializable
-2019-03-20 14:14:42,949 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:14:48,843 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 27, in location
+    return render_template('location.html', users=users, gardens=gardens, plants=plants)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\location.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 21, in block "html"
+    {% block body -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 27, in block "body"
+    {% block content -%}
+  File "C:\GardenApp\app\templates\base.html", line 41, in block "content"
+    {% block container_content %}
+  File "C:\GardenApp\app\templates\base.html", line 51, in block "container_content"
+    {% block app_content %}{% endblock %}
+  File "C:\GardenApp\app\templates\location.html", line 6, in block "app_content"
+    <span> {{len(gardens)}} Gardens,  </span>
+jinja2.exceptions.UndefinedError: 'len' is undefined
+2019-05-09 13:53:40,183 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 13:53:43,427 ERROR: Exception on /location/5606 SE Cesar Estrada Chavez Blvd, Portland, OR 97202 [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -64,85 +62,68 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 78, in reverse_geocode_by_token
-    for r in response['results']:
-TypeError: 'Response' object is not subscriptable
-2019-03-20 14:15:26,298 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:16:03,361 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:17:12,313 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:17:46,708 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:22:40,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:22:42,909 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
-Traceback (most recent call last):
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 27, in location
+    return render_template('location.html', users=users, gardens=gardens, plants=plants)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 591, in compile
+    self.handle_exception(exc_info, source_hint=source_hint)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 81, in reverse_geocode_by_token
-    indices.append(index)
-NameError: name 'index' is not defined
-2019-03-20 14:24:11,484 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:24:15,145 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
-Traceback (most recent call last):
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 82, in reverse_geocode_by_token
-    result = {results, indices}
-TypeError: unhashable type: 'list'
-2019-03-20 14:25:20,131 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:31:45,366 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:31:51,959 ERROR: Exception on /api/user/reverse_geocode [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
-Traceback (most recent call last):
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 82, in reverse_geocode_by_token
-    results = results[::6]
-UnboundLocalError: local variable 'results' referenced before assignment
-2019-03-20 14:32:13,602 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:33:35,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-20 14:35:46,102 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-28 17:26:35,329 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-31 00:17:49,991 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-31 01:24:20,266 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-31 01:25:30,461 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-31 16:49:12,127 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-31 16:50:27,002 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-03-31 16:51:17,778 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-02 14:23:39,889 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-02 23:51:40,024 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\location.html", line 6, in template
+    <span> {%len(gardens)%} Gardens,  </span>
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 497, in _parse
+    return Parser(self, source, name, encode_filename(filename)).parse()
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 901, in parse
+    result = nodes.Template(self.subparse(), lineno=1)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 130, in parse_statement
+    return getattr(self, 'parse_' + self.stream.current.value)()
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 268, in parse_block
+    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 165, in parse_statements
+    result = self.subparse(end_tokens)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 144, in parse_statement
+    self.fail_unknown_tag(token.value, token.lineno)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 97, in fail_unknown_tag
+    return self._fail_ut_eof(name, self._end_token_stack, lineno)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 90, in _fail_ut_eof
+    self.fail(' '.join(message), lineno)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\parser.py", line 59, in fail
+    raise exc(msg, lineno, self.name, self.filename)
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'len'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2019-05-09 13:55:09,968 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:09:07,196 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:10:37,128 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:10:50,405 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:11:12,244 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:11:42,520 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:12:08,321 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:12:47,469 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:13:15,105 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:43:16,005 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:45:19,823 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:46:05,645 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:46:43,535 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:48:40,507 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 14:49:00,729 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-09 21:10:34,594 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-10 22:06:49,327 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-10 22:12:54,982 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-10 22:28:04,251 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-20 17:48:22,649 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

@@ -66,8 +66,6 @@ class GardenForm(FlaskForm):
             if name.data == garden.name:
                 raise ValidationError('You already have a garden by this name.')
 
-
-
 class DeleteGardenForm(FlaskForm):
     submit = SubmitField('Delete')
 

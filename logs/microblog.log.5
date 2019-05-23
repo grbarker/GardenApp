@@ -1,17 +1,4 @@
-2018-10-22 15:28:57,979 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-22 15:45:13,098 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-22 15:47:45,975 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-22 20:40:42,535 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-23 11:00:52,406 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-23 11:05:18,385 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-10-23 11:13:06,176 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:23:58,382 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:39:44,806 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:43:30,024 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:45:49,912 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:47:10,026 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 14:53:56,631 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:01:27,213 ERROR: Exception on /api/user/post [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2019-05-01 15:26:38,702 ERROR: Exception on /registerGardenFromMap/1116 NE Schuyler St, Portland, OR 97212, USA [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -25,13 +12,15 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\posts.py", line 55, in submit_user_post_by_token
-    response.headers['Location'] = url_for('api.get_posts')
-AttributeError: 'dict' object has no attribute 'headers'
-2019-02-19 15:02:44,560 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:02:48,424 ERROR: Exception on /api/user/post [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 289, in registerGardenFromMap
+    form = GardenForm2()
+NameError: name 'GardenForm2' is not defined
+2019-05-01 15:26:51,228 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 15:32:16,321 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 15:33:08,487 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 18:43:59,523 ERROR: Exception on /registerGarden [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -45,15 +34,13 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\posts.py", line 55, in submit_user_post_by_token
-    response.body = post.to_dict()
-AttributeError: 'dict' object has no attribute 'body'
-2019-02-19 15:07:34,741 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:16:48,826 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:19:21,113 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:22:31,743 ERROR: Exception on /api/user/gardens [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 267, in registerGarden
+    wall_posts_page, current_app.config['POSTS_PER_PAGE'], False)
+NameError: name 'alert' is not defined
+2019-05-01 21:09:36,932 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 21:09:44,987 ERROR: Exception on /registerGarden [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -67,16 +54,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 19, in get_current_user_gardens
-    data = User.to_collection_dict(user.user_gardens(), page, per_page, 'api.get_current_user_gardens')
-AttributeError: 'User' object has no attribute 'user_gardens'
-2019-02-19 15:30:12,448 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:31:47,248 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:32:19,925 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:41:05,355 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-19 15:50:29,599 ERROR: Exception on /api/user/plant [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 221, in registerGarden
+    return render_template('registerGarden.html', title='Register Garden', form=form, address=address)
+NameError: name 'address' is not defined
+2019-05-01 21:09:48,103 ERROR: Exception on /registerGarden [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -90,27 +73,28 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\plants.py", line 33, in submit_user_plant_by_token
-    response.headers['Location'] = url_for('api.get_plants_by_user')
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 333, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1805, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 323, in url_for
-    force_external=external)
-  File "c:\gardenapp\blogvenv\lib\site-packages\werkzeug\routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'api.get_plants_by_user'. Did you mean 'api.get_plants' instead?
-2019-02-19 15:51:24,774 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-24 22:14:44,679 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-24 22:19:54,933 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-24 22:33:54,726 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-24 22:35:20,502 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-02-24 23:08:53,697 ERROR: Exception on /api/user/garden [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 221, in registerGarden
+    return render_template('registerGarden.html', title='Register Garden', form=form, address=address)
+NameError: name 'address' is not defined
+2019-05-01 21:11:06,716 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 21:12:23,365 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 21:48:54,451 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 22:43:24,256 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 22:57:40,307 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 23:13:47,612 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 00:31:24,421 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 00:31:29,034 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 00:41:10,744 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 00:42:05,608 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 00:43:26,552 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 01:22:20,440 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 01:23:19,031 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 01:27:36,802 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 01:35:19,536 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 02:17:05,776 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 02:23:42,007 ERROR: Exception on /explore [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -124,9 +108,24 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 20, in submit_user_garden_by_token
-    garden = Garden.query.get(garden_id)
-NameError: name 'garden_id' is not defined
-2019-02-24 23:13:11,938 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 149, in explore
+    infobox2 = '<h3 style="strong">Plants at this location</h3><ul>{}</ul>{}'.format(container)
+IndexError: tuple index out of range
+2019-05-02 02:44:26,785 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 02:53:05,606 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 02:56:11,168 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 15:52:34,939 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 15:53:32,252 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 15:57:32,362 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 15:59:05,392 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 16:01:52,745 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 16:02:38,940 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 16:07:03,630 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 16:07:56,800 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 16:18:22,424 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-02 16:18:43,740 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-03 00:09:10,526 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-03 00:12:53,878 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-03 00:13:20,601 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

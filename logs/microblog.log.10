@@ -1,12 +1,4 @@
-2018-06-25 16:31:45,718 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:20:44,238 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:24:21,071 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:26:10,055 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:48:29,994 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:51:16,207 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:51:24,595 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:53:12,456 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-04 15:53:15,009 ERROR: Exception on /api/gardens/map [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2019-05-01 14:29:47,336 ERROR: Exception on /placementMap [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -20,39 +12,63 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 16, in get_all_gardens_for_maps
-    return jsonify(data)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 263, in jsonify
-    (dumps(data, indent=indent, separators=separators), '\n'),
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 123, in dumps
-    rv = _json.dumps(obj, **kwargs)
-  File "C:\Python36\lib\json\__init__.py", line 238, in dumps
-    **kw).encode(obj)
-  File "C:\Python36\lib\json\encoder.py", line 201, in encode
-    chunks = list(chunks)
-  File "C:\Python36\lib\json\encoder.py", line 430, in _iterencode
-    yield from _iterencode_dict(o, _current_indent_level)
-  File "C:\Python36\lib\json\encoder.py", line 404, in _iterencode_dict
-    yield from chunks
-  File "C:\Python36\lib\json\encoder.py", line 325, in _iterencode_list
-    yield from chunks
-  File "C:\Python36\lib\json\encoder.py", line 404, in _iterencode_dict
-    yield from chunks
-  File "C:\Python36\lib\json\encoder.py", line 325, in _iterencode_list
-    yield from chunks
-  File "C:\Python36\lib\json\encoder.py", line 437, in _iterencode
-    o = _default(o)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\json.py", line 80, in default
-    return _json.JSONEncoder.default(self, o)
-  File "C:\Python36\lib\json\encoder.py", line 180, in default
-    o.__class__.__name__)
-TypeError: Object of type 'Plant' is not JSON serializable
-2018-07-05 17:11:59,609 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 17:12:49,674 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 17:12:59,183 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 17:13:50,114 ERROR: Exception on /api/gardens/map [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 53, in placementMap
+    return render_template("placementMap.html", placementmap=placementmap, lat=lat, lng=lng)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\placementMap.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
+    {% block content -%}
+  File "C:\GardenApp\app\templates\base.html", line 52, in block "content"
+    {% block app_content %}{% endblock %}
+  File "C:\GardenApp\app\templates\placementMap.html", line 7, in block "app_content"
+    <head>{{placementmap.js}}</head>
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 749, in js
+    DEFAULT_ICON=DEFAULT_ICON
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 709, in render
+    return render_template(*args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\templates\googlemaps\gmapjs.html", line 228, in top-level template code
+    html = '<p><a href="{{ url_for(url, address=xxxx) }}">xxxx</a></p><br>'.replace('url', url, 'xxxx', address);
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 280, in url_for
+    if endpoint[:1] == '.':
+jinja2.exceptions.UndefinedError: 'url' is undefined
+2019-05-01 14:30:49,663 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-01 14:30:51,920 ERROR: Exception on /placementMap [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -66,52 +82,59 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 15, in get_all_gardens_for_maps
-    data = Garden.to_collection_dict(Garden.query, page, per_page, 'api.get_all_gardens_for_maps')
-  File "C:\GardenApp\app\models.py", line 19, in to_collection_dict
-    'items': [item.to_dict() for item in resources.items],
-  File "C:\GardenApp\app\models.py", line 19, in <listcomp>
-    'items': [item.to_dict() for item in resources.items],
-  File "C:\GardenApp\app\models.py", line 224, in to_dict
-    'plants': self.get_plants_to_dict()
-TypeError: get_plants_to_dict() takes 0 positional arguments but 1 was given
-2018-07-05 17:21:08,245 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 17:23:51,378 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 17:23:55,938 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 18:36:42,762 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 18:37:12,822 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 18:37:22,427 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-05 18:37:27,637 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:02:07,855 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:05:00,377 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:10:17,602 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:19:47,559 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:28:41,757 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:29:01,745 ERROR: Exception on /api/gardens/map [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
-Traceback (most recent call last):
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 53, in placementMap
+    return render_template("placementMap.html", placementmap=placementmap, lat=lat, lng=lng)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_httpauth.py", line 93, in decorated
-    return f(*args, **kwargs)
-  File "C:\GardenApp\app\api\gardens.py", line 15, in get_all_gardens_for_maps
-    data = Garden.to_collection_dict(Garden.query.filter(Garden.lat != None and Garden.lon != None), page, per_page, 'api.get_all_gardens_for_maps')
-  File "c:\gardenapp\blogvenv\lib\site-packages\sqlalchemy\sql\elements.py", line 2975, in __bool__
-    raise TypeError("Boolean value of this clause is not defined")
-TypeError: Boolean value of this clause is not defined
-2018-07-09 21:31:28,077 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:33:08,693 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 21:34:04,176 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-09 22:23:38,520 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2018-07-13 15:52:09,847 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\GardenApp\app\templates\placementMap.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
+    {% block content -%}
+  File "C:\GardenApp\app\templates\base.html", line 52, in block "content"
+    {% block app_content %}{% endblock %}
+  File "C:\GardenApp\app\templates\placementMap.html", line 7, in block "app_content"
+    <head>{{placementmap.js}}</head>
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 749, in js
+    DEFAULT_ICON=DEFAULT_ICON
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\__init__.py", line 709, in render
+    return render_template(*args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
+    context, ctx.app)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
+    rv = template.render(context)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_googlemaps\templates\googlemaps\gmapjs.html", line 228, in top-level template code
+    html = '<p><a href="{{ url_for(url, address=xxxx) }}">xxxx</a></p><br>'.replace('url', url).replace('xxxx', address);
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\helpers.py", line 280, in url_for
+    if endpoint[:1] == '.':
+jinja2.exceptions.UndefinedError: 'url' is undefined
+2019-05-01 14:32:07,903 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

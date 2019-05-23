@@ -1,142 +1,49 @@
-2019-04-03 00:16:12,481 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 00:16:48,864 ERROR: Exception on /user/hamburgler [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+2019-05-20 17:51:21,037 ERROR: Exception on /plant_from_index [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 210, in user
-    return render_template('user.html', user=user, plants=plants, posts=posts)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
-    context, ctx.app)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
-    rv = template.render(context)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\GardenApp\app\templates\user.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
-    {%- block html %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
-    {% block body -%}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
-    {% block content -%}
-  File "C:\GardenApp\app\templates\base.html", line 51, in block "content"
-    {% block app_content %}{% endblock %}
-  File "C:\GardenApp\app\templates\user.html", line 24, in block "app_content"
-    {% for plant in plants %}
-TypeError: 'Pagination' object is not iterable
-2019-04-03 00:23:04,336 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 00:23:18,485 ERROR: Exception on /user/hamburgler [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2019-05-20 18:21:13,952 ERROR: Exception on /post_from_index [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 198, in user
-    posts = user.posts.all.paginate(
-AttributeError: 'function' object has no attribute 'paginate'
-2019-04-03 00:24:54,557 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 00:25:05,880 ERROR: Exception on /user/hamburgler [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2019-05-20 18:28:13,306 ERROR: Exception on /post_from_index [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 198, in user
-    posts = user.posts.all().paginate(
-AttributeError: 'list' object has no attribute 'paginate'
-2019-04-03 00:35:44,337 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 00:36:00,797 ERROR: Exception on /user/hamburgler [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2019-05-22 14:01:17,362 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 19:12:09,212 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 19:12:19,774 ERROR: Exception on /post_from_index [POST] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
-    raise value
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\GardenApp\app\main\routes.py", line 210, in user
-    return render_template('user.html', user=user, plants=plants, posts=posts)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 134, in render_template
-    context, ctx.app)
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask\templating.py", line 116, in _render
-    rv = template.render(context)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\gardenapp\blogvenv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\GardenApp\app\templates\user.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "C:\GardenApp\app\templates\base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
-    {%- block html %}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
-    {% block body -%}
-  File "c:\gardenapp\blogvenv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
-    {% block content -%}
-  File "C:\GardenApp\app\templates\base.html", line 51, in block "content"
-    {% block app_content %}{% endblock %}
-  File "C:\GardenApp\app\templates\user.html", line 30, in block "app_content"
-    {% for post in posts %}
-TypeError: 'Pagination' object is not iterable
-2019-04-03 00:38:54,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 00:41:20,144 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 12:03:12,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 18:10:49,556 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 18:10:55,673 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
-2019-04-03 18:11:02,119 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2019-05-22 19:23:47,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 19:26:14,997 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 19:29:01,753 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
