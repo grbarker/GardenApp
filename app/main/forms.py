@@ -27,12 +27,8 @@ class EditProfileForm(FlaskForm):
 class PostForm(FlaskForm):
     post = TextAreaField('Say something', validators=[
         DataRequired(), Length(min=1, max=500)])
-    submit = SubmitField('Submit')
+    submit1 = SubmitField('Submit')
 
-    def validate_garden(self, garden):
-        garden = Garden.query.filter_by(name=garden)
-        if garden is None:
-            raise ValidationError('Garden does not exist. Please enter a garden name that is in the system or create a new one.')
 
 
 class WallPostForm(FlaskForm):
@@ -45,7 +41,7 @@ class PlantFormDropDown(FlaskForm):
     plant = StringField('What did you plant', validators=[
         DataRequired(), Length(min=1, max=140)])
     garden = SelectField('Gardens', coerce=int)
-    submit = SubmitField('Submit')
+    submit2 = SubmitField('Submit')
 
 
 class PlantFormFromGardenPage(FlaskForm):

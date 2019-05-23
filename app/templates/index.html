@@ -10,7 +10,7 @@
     {% elif title == 'Explore' %}<h1>Let's take a look at what's going on in the neighborhood</h1>
     {% endif %}
     {% if form1 %}
-    <form action="{{ url_for('main.post') }}" method="post">
+    <form action="" method="post">
         {{ form1.hidden_tag() }}
         <p>
             {{ form1.post.label }}<br>
@@ -19,11 +19,11 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form1.submit(class="btn btn-default") }}</p>
+        <p>{{ form1.submit1(class="btn btn-default") }}</p>
     </form>
     {% endif %}
     {% if form2 %}
-    <form action="{{ url_for('main.plant') }}" method="post">
+    <form action="" method="post">
         {{ form2.hidden_tag() }}
         <p>
             {{ form2.plant.label }}<br>
@@ -39,7 +39,7 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form2.submit(class="btn btn-default") }}</p>
+        <p>{{ form2.submit2(class="btn btn-default") }}</p>
     </form>
     {% endif %}
     {% if title == 'Home Page' %}

@@ -47,3 +47,69 @@ ValueError: View function did not return a response
 2019-05-22 19:23:47,088 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
 2019-05-22 19:26:14,997 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
 2019-05-22 19:29:01,753 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 19:34:07,761 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 19:35:34,315 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 20:01:51,255 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 20:01:55,480 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 39, in index
+    form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
+UnboundLocalError: local variable 'form2' referenced before assignment
+2019-05-22 20:02:22,131 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 20:12:42,011 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 20:18:12,818 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 20:18:19,147 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 45, in index
+    elif not form1.submit.data:
+AttributeError: 'PostForm' object has no attribute 'submit'
+2019-05-22 20:18:50,885 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 20:24:07,970 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]
+2019-05-22 20:24:12,849 ERROR: Exception on /index [GET] [in c:\gardenapp\blogvenv\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\gardenapp\blogvenv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\GardenApp\app\main\routes.py", line 41, in index
+    if form1.submit2.data and form1.validate_on_submit():
+AttributeError: 'PostForm' object has no attribute 'submit2'
+2019-05-22 20:24:32,460 INFO: Microblog startup [in C:\GardenApp\app\__init__.py:76]

@@ -38,6 +38,22 @@ def index():
     form1 = PostForm()
     form2 = PlantFormDropDown()
     form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
+    if form1.submit1.data and form1.validate_on_submit():
+        post = Post(body=form1.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('main.index'))
+    if form2.submit2.data and form2.validate_on_submit():
+        id = form2.garden.data
+        garden = Garden.query.filter_by(id=id).first()
+        plant = Plant(name=form2.plant.data,
+            grower=current_user,
+            garden=garden)
+        db.session.add(plant)
+        db.session.commit()
+        flash('Your plant is now live!')
+        return redirect(url_for('main.index'))
     posts_page = request.args.get('posts_page', 1, type=int)
     plants_page = request.args.get('plants_page', 1, type=int)
     posts = current_user.followed_posts().paginate(
