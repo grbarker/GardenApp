@@ -186,6 +186,9 @@ class Post(PaginatedAPIMixin, db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     wall_post = db.Column(db.Boolean, default=False)
     wall_owner_id = db.Column(db.Integer)
+    reply_post = db.Column(db.Boolean, default=False)
+    parent_comment_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    replies = db.relationship('Post', backref=db.backref('parent_comment', remote_side=[id], lazy='dynamic', uselist=True))
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
