@@ -6,7 +6,7 @@ from werkzeug.urls import url_parse
 from app.models import User, Plant, Garden, Post
 from app import db
 from app.main import bp
-from app.main.forms import EditProfileForm, PostForm, WallPostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage, DeleteGardenForm
+from app.main.forms import EditProfileForm, PostForm, PostReplyForm, WallPostForm, PlantFormDropDown, GardenForm, PlantFormFromGardenPage, DeleteGardenForm
 import sys
 import requests
 from sqlalchemy import desc
@@ -24,7 +24,6 @@ def location(address):
     for gdn in gardens:
         plants.extend(gdn.plants.all())
         users.extend(gdn.users.all())
-    GardenAppKeyNew = "AIzaSyB_6lIcM2n0ZtT9Zrex8gOGaNJOMwpLecs"
 
     return render_template('location.html', users=users, gardens=gardens, plants=plants, lat=lat, lon=lon, key=GardenAppKeyNew)
 
@@ -35,8 +34,10 @@ def location(address):
 @bp.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
+    gkey = current_app.config['GOOGLEMAPS_KEY_ALL']
     form1 = PostForm()
     form2 = PlantFormDropDown()
+    form3 = PostReplyForm()
     form2.garden.choices = [(g.id, g.name) for g in current_user.gardens]
     if form1.submit1.data and form1.validate_on_submit():
         post = Post(body=form1.post.data, author=current_user)
@@ -54,6 +55,17 @@ def index():
         db.session.commit()
         flash('Your plant is now live!')
         return redirect(url_for('main.index'))
+    if form3.submit3.data and form3.validate_on_submit():
+        parent_post = Post.query.get(int(form3.parent_post_id.data))
+        if parent_post is not None:
+            post = Post(body=form3.post.data, reply_post=True, author=current_user, parent_comment=parent_post)
+            db.session.add(post)
+            db.session.commit()
+            flash('Your reply is now live!')
+            return redirect(url_for('main.index'))
+        else:
+            flash('Your reply did not go through')
+            return redirect(url_for('main.index'))
     posts_page = request.args.get('posts_page', 1, type=int)
     plants_page = request.args.get('plants_page', 1, type=int)
     posts = current_user.followed_posts().paginate(
@@ -96,7 +108,8 @@ def index():
         lat = location_for_markers[0]
         lon =location_for_markers[1]
         icon = str(url_for('static', filename='agriculture_map_icons/iboga.png'))
-        infobox = '<h3 style="strong">{}&#39;s plants at this location</h3><ul>{}</ul>'.format(current_user.username, infobox_plants)
+        embed_img = '<iframe width="280" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/streetview?location={},{}&key={}" allowfullscreen></iframe>'.format(lat, lon, gkey)
+        infobox = '<h3 style="strong">{}&#39;s plants at this location</h3><ul>{}</ul>{}'.format(current_user.username, infobox_plants, embed_img)
         marker = {'icon': icon, 'lat': lat, 'lng': lon, 'infobox': infobox}
         markers.append(marker)
     mymap = Map(
@@ -108,12 +121,21 @@ def index():
     )
     return render_template("index.html", title='Home Page', form1=form1, form2=form2, posts=posts.items,
         posts_next_url=posts_next_url, posts_prev_url=posts_prev_url, plants=plants.items,
-        plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, mymap=mymap, gardens=gardens)
+        plants_next_url=plants_next_url, plants_prev_url=plants_prev_url, mymap=mymap, gardens=gardens, form3=form3)
 
 
-@bp.route('/explore')
+@bp.route('/explore', methods=['GET', 'POST'])
 @login_required
 def explore():
+    gkey = current_app.config['GOOGLEMAPS_KEY_ALL']
+    form3 = PostReplyForm()
+    if form3.submit3.data and form3.validate_on_submit():
+        parent_post = Post.query.get(int(form3.parent_post_id.data))
+        post = Post(body=form3.post.data, reply_post=True, author=current_user, parent_comment=parent_post)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your reply is now live!')
+        return redirect(url_for('main.explore'))
     posts_page = request.args.get('posts_page', 1, type=int)
     plants_page = request.args.get('plants_page', 1, type=int)
     plants = Plant.query.order_by(desc(Plant.timestamp)).paginate(
@@ -159,7 +181,7 @@ def explore():
                 location_for_markers = (lat, lon, address, gardens, garden_plants, garden_users)
                 locations_for_markers.append(location_for_markers)
     for location_for_markers in locations_for_markers:
-        response = requests.get('http://maps.googleapis.com/maps/api/streetview?size=200x200&location={}&pitch=-25&key=AIzaSyDhPSBWrhJwAnF7awFAIq2fzba7AWM8AuQ'.format(location_for_markers[2]))
+        response = requests.get('http://maps.googleapis.com/maps/api/streetview?size=200x200&location={}&pitch=-25&key={}'.format(location_for_markers[2], gkey))
         #responseJSON = response.get_json()
         location_gardens = location_for_markers[3]
         #gslength = len(location_gardens)
@@ -198,15 +220,13 @@ def explore():
         #    infobox_gardens_plants = ''
         #for location_plant in location_plants:
         #    infobox_plants = infobox_plants + '<li style="list-style-type: none;"><p style="color: green;background-color: white;"><strong>{}</strong></p>- planted by {}</li>'.format(location_plant.name, location_plant.grower.username)
-        GardenAppKeyNew = "AIzaSyB_6lIcM2n0ZtT9Zrex8gOGaNJOMwpLecs"
-        GoogleMapsAPIKeyOld ="AIzaSyDhPSBWrhJwAnF7awFAIq2fzba7AWM8AuQ"
         lat = location_for_markers[0]
         lon =location_for_markers[1]
         address = location_for_markers[2]
         icon = str(url_for('static', filename='agriculture_map_icons/iboga.png'))
         location_stats = "<p>{} Gardens,  {} Plants,  {} Users</p>".format(len(location_gardens), len(location_plants), len(location_users))
         #streetview_url = "https://maps.googleapis.com/maps/api/streetview?size=275x275&location={}&pitch=-25&key=AIzaSyDhPSBWrhJwAnF7awFAIq2fzba7AWM8AuQ".format(address)
-        embed_img = '<iframe width="280" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/streetview?location={},{}&key=AIzaSyB_6lIcM2n0ZtT9Zrex8gOGaNJOMwpLecs" allowfullscreen></iframe>'.format(lat, lon)
+        embed_img = '<iframe width="280" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/streetview?location={},{}&key={}" allowfullscreen></iframe>'.format(lat, lon, gkey)
         #streetview = '<img src="{}" style="max-width:300px;max-height:300px;width:auto;height:auto;" alt="A Google Streetview image of the selected location">'.format(streetview_url)
         location_url = url_for('main.location', address=address)
         location_link = '<a href="{}">Go to Location</a>'.format(location_url)
@@ -240,7 +260,7 @@ def explore():
     )
     return render_template("index.html", title='Explore', plants=plants.items, plants_next_url=plants_next_url,
         plants_prev_url=plants_prev_url, posts=posts.items, posts_next_url=posts_next_url,
-        posts_prev_url=posts_prev_url, mymap=mymap, gardens=gardens)
+        posts_prev_url=posts_prev_url, mymap=mymap, gardens=gardens, form3=form3)
 
 
 @bp.route('/post_from_index', methods=['POST'])
@@ -281,6 +301,7 @@ def plant():
 @bp.route('/placementMap', methods=['GET', 'POST'])
 @login_required
 def placementMap():
+    gkey = current_app.config['GOOGLEMAPS_KEY_ALL']
     lat = request.args.get('lat', None, type=int)
     lng = request.args.get('lng', None, type=int)
     placementmap = Map(
@@ -296,15 +317,16 @@ def placementMap():
         center_on_user_location=True,
         collapsible=False,
     )
-    return render_template("placementMap.html", placementmap=placementmap, lat=lat, lng=lng)
+    return render_template("placementMap.html", placementmap=placementmap, lat=lat, lng=lng, gkey=gkey)
 
 #Note: the Google API address might/will change in the future
 @bp.route('/registerGarden', methods=['GET', 'POST'])
 @login_required
 def registerGarden():
     form = GardenForm()
+    gkey = current_app.config['GOOGLEMAPS_KEY_ALL']
     if form.validate_on_submit():
-        response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(form.address.data))
+        response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key={}'.format(form.address.data, gkey))
         responseJSON = response.json()
         lat = responseJSON['results'][0]['geometry']['location']['lat']
         lon = responseJSON['results'][0]['geometry']['location']['lng']
@@ -323,9 +345,10 @@ def registerGarden():
 def registerGardenFromMap(address):
     address = address
     form = GardenForm()
-    form.address.data=address
+    form.address.data = address
+    gkey = current_app.config['GOOGLEMAPS_KEY_ALL']
     if form.validate_on_submit():
-        response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key=AIzaSyCyX0uZDxs4ekWQz-uSuhvhpABMOFf8QfI'.format(form.address.data))
+        response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key={}'.format(form.address.data, gkey))
         responseJSON = response.json()
         lat = responseJSON['results'][0]['geometry']['location']['lat']
         lon = responseJSON['results'][0]['geometry']['location']['lng']
