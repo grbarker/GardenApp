@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField, HiddenField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from app.models import User, Plant, Garden, Post
 from flask_login import current_user
@@ -30,6 +30,13 @@ class PostForm(FlaskForm):
     submit1 = SubmitField('Submit')
 
 
+class PostReplyForm(FlaskForm):
+    reply_post = TextAreaField('Say something', validators=[
+        DataRequired(), Length(min=1, max=500)])
+    parent_post_id = HiddenField(validators=[
+        DataRequired()])
+    submit3 = SubmitField('Reply')
+
 
 class WallPostForm(FlaskForm):
     wall_post = TextAreaField('Post something ', validators=[
@@ -59,8 +66,8 @@ class GardenForm(FlaskForm):
     def validate_name(self, name):
         gardens = current_user.gardens
         for garden in gardens:
-            if name.data == garden.name:
-                raise ValidationError('You already have a garden by this name.')
+            if name.data == garden.name and self.address.data == garden.address:
+                raise ValidationError('You already have a garden by this name at this location.')
 
 class DeleteGardenForm(FlaskForm):
     submit = SubmitField('Delete')
